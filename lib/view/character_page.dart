@@ -83,8 +83,8 @@ class _CharacterViewState extends State<CharacterView>
           SliverAppBar(
             floating: true,
             pinned: true,
-            expandedHeight: 0,
             snap: true,
+            toolbarHeight: 0,
             bottom: TabBar(
               controller: _tabController,
               tabs: const [

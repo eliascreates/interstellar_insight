@@ -36,7 +36,7 @@ class SimpleCharacterCard extends StatelessWidget {
             ],
             image: DecorationImage(
               image: AssetImage(character.image),
-              fit: BoxFit.cover,
+              fit: BoxFit.cover
             ),
           ),
         ),
