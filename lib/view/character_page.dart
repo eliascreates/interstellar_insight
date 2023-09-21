@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:interstellar_insight/widgets/cubit/featured_character_list_cubit_cubit.dart';
@@ -75,8 +74,8 @@ class _CharacterViewState extends State<CharacterView>
   @override
   Widget build(BuildContext context) {
     return NestedScrollView(
-      scrollDirection: Axis.vertical,
-      physics: const NeverScrollableScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
+      floatHeaderSlivers: true,
       headerSliverBuilder: (context, isInnerBoxScrolled) {
         return [
           const SliverAppBar(title: Text('Final Space')),
@@ -90,7 +89,7 @@ class _CharacterViewState extends State<CharacterView>
               controller: _tabController,
               tabs: const [
                 Tab(icon: Icon(Icons.grid_on_rounded)),
-                Tab(icon: Icon(Icons.list_rounded)),
+                Tab(icon: Icon(Icons.view_agenda_outlined)),
               ],
             ),
           ),

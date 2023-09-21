@@ -113,4 +113,12 @@ List<Character> characters = [
     species: 'Serepentian',
     origin: 'Serepentis',
   ),
+  const Character(
+    id: '4',
+    name: 'Ash Graven',
+    image: 'assets/images/ash_graven.png',
+    status: 'Unknown',
+    species: 'Serepentian',
+    origin: 'Serepentis',
+  ),
 ];

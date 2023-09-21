@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Interstellar Insight App',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.deepOrange,
+          seedColor: Colors.deepPurple,
         ),
         useMaterial3: true,
       ),

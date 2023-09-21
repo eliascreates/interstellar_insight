@@ -11,9 +11,8 @@ class SimpleCharacterGridList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MasonryGridView.count(
-      shrinkWrap: true,
       itemCount: characters.length,
-      physics: const BouncingScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       crossAxisCount: 2,
       mainAxisSpacing: 5,
       crossAxisSpacing: 5,
