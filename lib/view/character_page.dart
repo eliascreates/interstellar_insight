@@ -58,7 +58,7 @@ class CharacterView extends StatefulWidget {
 class _CharacterViewState extends State<CharacterView>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-
+  final _scrollController = ScrollController();
   @override
   void initState() {
     super.initState();
@@ -74,7 +74,7 @@ class _CharacterViewState extends State<CharacterView>
   @override
   Widget build(BuildContext context) {
     return NestedScrollView(
-      physics: const BouncingScrollPhysics(),
+      controller: _scrollController,
       floatHeaderSlivers: true,
       headerSliverBuilder: (context, isInnerBoxScrolled) {
         return [
@@ -95,7 +95,10 @@ class _CharacterViewState extends State<CharacterView>
           ),
         ];
       },
-      body: SimpleCharacterTabView(tabController: _tabController),
+      body: SimpleCharacterTabView(
+        tabController: _tabController,
+        nestedScrollController: _scrollController,
+      ),
     );
   }
 }

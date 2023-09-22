@@ -4,16 +4,23 @@ import 'package:interstellar_insight/models/character.dart';
 import 'simple_character_tile.dart';
 
 class SimpleCharacterTileList extends StatelessWidget {
-  const SimpleCharacterTileList({super.key});
+  const SimpleCharacterTileList({super.key, required this.scrollController});
+
+  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: characters.length,
-      itemBuilder: (context, index) {
-        final character = characters[index];
-        return SimpleCharacterTile(character: character);
-      },
+    return SingleChildScrollView(
+      clipBehavior: Clip.none,
+      child: ListView.builder(
+        controller: scrollController,
+        shrinkWrap: true,
+        itemCount: characters.length,
+        itemBuilder: (context, index) {
+          final character = characters[index];
+          return SimpleCharacterTile(character: character);
+        },
+      ),
     );
   }
 }
