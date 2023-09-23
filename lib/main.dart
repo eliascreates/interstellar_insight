@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:interstellar_insight/view/character_page.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:interstellar_insight/home/view/home_page.dart';
+import 'package:path_provider/path_provider.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  HydratedBloc.storage = await HydratedStorage.build(
+      storageDirectory: await getTemporaryDirectory());
   runApp(const MyApp());
 }
 
@@ -15,13 +20,13 @@ class MyApp extends StatelessWidget {
       title: 'Interstellar Insight App',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
+          brightness: Brightness.light,
           seedColor: Colors.deepPurple,
         ),
         useMaterial3: true,
       ),
-      home: const CharacterPage(),
+      themeMode: ThemeMode.light,
+      home: const HomePage(),
     );
   }
 }
-
-

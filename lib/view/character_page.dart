@@ -17,36 +17,10 @@ class CharacterPage extends StatelessWidget {
           child: const CharacterView(),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        showUnselectedLabels: false,
-        showSelectedLabels: false,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.people),
-            label: 'Characters',
-            tooltip: 'Characters',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.tv),
-            label: 'Episodes',
-            tooltip: 'Episodes',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.location_on),
-            label: 'Locations',
-            tooltip: 'Locations',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.format_quote),
-            label: 'Quotes',
-            tooltip: 'Quotes',
-          ),
-        ],
-        type: BottomNavigationBarType.fixed,
-      ),
     );
   }
 }
+
 
 class CharacterView extends StatefulWidget {
   const CharacterView({super.key});
@@ -102,3 +76,4 @@ class _CharacterViewState extends State<CharacterView>
     );
   }
 }
+
