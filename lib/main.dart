@@ -27,6 +27,11 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
+      darkTheme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(
+        brightness: Brightness.dark,
+        seedColor: Colors.deepPurple,
+      )),
       themeMode: ThemeMode.light,
       home: const HomePage(),
     );
