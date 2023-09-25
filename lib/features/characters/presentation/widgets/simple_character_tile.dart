@@ -14,27 +14,27 @@ class SimpleCharacterTile extends StatelessWidget {
         onTap: () {},
         shape:
             ContinuousRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        leading: CircleAvatar(
-          backgroundImage: Image.asset(
-            character.image,
-            alignment: Alignment.topCenter,
-            fit: BoxFit.scaleDown,
-            semanticLabel: character.description,
-          ).image,
-          radius: 30,
-          child: Container(
-            alignment: Alignment.bottomRight,
-            padding: const EdgeInsets.only(bottom: 5, right: 5),
-            child: Icon(
-              Icons.circle,
-              size: 10,
+        leading: Container(
+          padding: const EdgeInsets.all(2),
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(
+              width: 1,
               color: (character.status == 'Alive'
-                      ? aliveStatusColor
-                      : character.status == 'Dead'
-                          ? deceasedStatusColor
-                          : unknownStatusColor)
-                  .withOpacity(0.7),
+                  ? aliveStatusColor
+                  : character.status == 'Dead'
+                      ? deceasedStatusColor
+                      : unknownStatusColor),
             ),
+          ),
+          child: CircleAvatar(
+            backgroundImage: Image.asset(
+              character.image,
+              alignment: Alignment.topCenter,
+              fit: BoxFit.scaleDown,
+              semanticLabel: character.description,
+            ).image,
+            radius: 30,
           ),
         ),
         title: Row(

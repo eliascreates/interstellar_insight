@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:interstellar_insight/models/character.dart';
-import 'package:interstellar_insight/widgets/featured_character_card.dart';
+import 'package:interstellar_insight/features/characters/presentation/widgets/featured_character_card.dart';
 
-import 'cubit/featured_character_list_cubit_cubit.dart';
+import '../cubit/featured_character_list_cubit_cubit.dart';
 import 'dot_indicators.dart';
 
 class FeaturedCharacterList extends StatefulWidget {

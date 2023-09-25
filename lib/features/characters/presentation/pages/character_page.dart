@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:interstellar_insight/widgets/cubit/featured_character_list_cubit_cubit.dart';
-import 'package:interstellar_insight/widgets/featured_character_list.dart';
+import 'package:interstellar_insight/features/characters/presentation/cubit/featured_character_list_cubit_cubit.dart';
+import 'package:interstellar_insight/features/characters/presentation/widgets/featured_character_list.dart';
 
 import '../widgets/simple_character_tab_view.dart';
 
@@ -20,7 +20,6 @@ class CharacterPage extends StatelessWidget {
     );
   }
 }
-
 
 class CharacterView extends StatefulWidget {
   const CharacterView({super.key});
@@ -61,6 +60,7 @@ class _CharacterViewState extends State<CharacterView>
             toolbarHeight: 0,
             bottom: TabBar(
               controller: _tabController,
+              enableFeedback: true,
               tabs: const [
                 Tab(icon: Icon(Icons.grid_on_rounded)),
                 Tab(icon: Icon(Icons.view_agenda_outlined)),
@@ -76,4 +76,3 @@ class _CharacterViewState extends State<CharacterView>
     );
   }
 }
-

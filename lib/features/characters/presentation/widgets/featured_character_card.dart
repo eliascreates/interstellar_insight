@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:interstellar_insight/core/constants/colors.dart';
 
-import '../models/character.dart';
+import '../../../../models/character.dart';
 
 class FeaturedCharacterCard extends StatelessWidget {
   final Character character;

@@ -30,7 +30,7 @@ class Character {
   }
 
   String get description {
-    // final firstName = name.split(' ').first;
+    
     final visibleAbilities = abilities.take(3);
     if (visibleAbilities.isEmpty) {
       return "$firstName does not have any abilities";
@@ -76,6 +76,29 @@ class Character {
     return cleanedAliases;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 List<Character> characters = [
   ...List.generate(3, (index) {
