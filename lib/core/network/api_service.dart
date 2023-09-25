@@ -12,7 +12,8 @@ class ApiService {
     final String responseBody = response.body;
 
     if (response.statusCode < 200 || response.statusCode >= 300) {
-      throw ApiException('API request failed with status code ${response.statusCode}');
+      throw ApiException(
+          'API request failed with status code ${response.statusCode}');
     }
 
     try {
@@ -32,6 +33,16 @@ class ApiService {
     }
   }
 
+  Future<Map<String, dynamic>> fetchCharacterById(String id) async {
+    try {
+      final response =
+          await _client.get(Uri.parse('${Endpoints.characters}/$id'));
+      return _decodeResponse(response);
+    } catch (e) {
+      throw NetworkException('Failed to fetch a character by this id($id): $e');
+    }
+  }
+
   Future<Map<String, dynamic>> fetchEpisodes() async {
     try {
       final response = await _client.get(Uri.parse(Endpoints.episodes));
@@ -42,6 +53,17 @@ class ApiService {
     }
   }
 
+  Future<Map<String, dynamic>> fetchEpisodeById(String id) async {
+    try {
+      final response =
+          await _client.get(Uri.parse('${Endpoints.episodes}/$id'));
+
+      return _decodeResponse(response);
+    } catch (e) {
+      throw NetworkException('Failed to fetch episode by this id($id): $e');
+    }
+  }
+
   Future<Map<String, dynamic>> fetchLocations() async {
     try {
       final response = await _client.get(Uri.parse(Endpoints.locations));
@@ -49,6 +71,17 @@ class ApiService {
       return _decodeResponse(response);
     } catch (e) {
       throw NetworkException('Failed to fetch locations: $e');
+    }
+  }
+
+  Future<Map<String, dynamic>> fetchLocationById(String id) async {
+    try {
+      final response =
+          await _client.get(Uri.parse('${Endpoints.locations}/$id'));
+
+      return _decodeResponse(response);
+    } catch (e) {
+      throw NetworkException('Failed to fetch a location by this id($id): $e');
     }
   }
 
