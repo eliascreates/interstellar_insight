@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:interstellar_insight/features/characters/presentation/cubit/featured_character_list_cubit_cubit.dart';
-import 'package:interstellar_insight/features/characters/presentation/widgets/featured_character_list.dart';
 
-import '../widgets/simple_character_tab_view.dart';
+import '../cubit/featured_character_list_cubit_cubit.dart';
+import '../widgets/widgets.dart';
 
 class CharacterPage extends StatelessWidget {
   const CharacterPage({super.key});
@@ -58,14 +57,7 @@ class _CharacterViewState extends State<CharacterView>
             pinned: true,
             snap: true,
             toolbarHeight: 0,
-            bottom: TabBar(
-              controller: _tabController,
-              enableFeedback: true,
-              tabs: const [
-                Tab(icon: Icon(Icons.grid_on_rounded)),
-                Tab(icon: Icon(Icons.view_agenda_outlined)),
-              ],
-            ),
+            bottom: SimpleCharacterTabBar(tabController: _tabController),
           ),
         ];
       },

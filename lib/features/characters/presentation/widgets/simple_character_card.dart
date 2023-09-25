@@ -3,8 +3,11 @@ import 'package:interstellar_insight/core/constants/colors.dart';
 import 'package:interstellar_insight/models/character.dart';
 
 class SimpleCharacterCard extends StatelessWidget {
-  const SimpleCharacterCard(
-      {super.key, required this.character, required this.height});
+  const SimpleCharacterCard({
+    super.key,
+    required this.character,
+    required this.height,
+  });
 
   final Character character;
   final double height;
@@ -35,9 +38,7 @@ class SimpleCharacterCard extends StatelessWidget {
               )
             ],
             image: DecorationImage(
-              image: AssetImage(character.image),
-              fit: BoxFit.cover
-            ),
+                image: AssetImage(character.image), fit: BoxFit.cover),
           ),
         ),
         Positioned(
