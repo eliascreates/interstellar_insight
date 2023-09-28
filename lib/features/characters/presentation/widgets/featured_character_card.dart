@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:interstellar_insight/core/constants/colors.dart';
 
-import '../../../../models/character.dart';
+import '../../domain/domain.dart';
 
 class FeaturedCharacterCard extends StatelessWidget {
   final Character character;
@@ -101,7 +101,7 @@ class FeaturedCharacterCard extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
                         image: DecorationImage(
-                          image: AssetImage(character.image),
+                          image: NetworkImage(character.imageUrl),
                           fit: BoxFit.cover,
                           colorFilter: ColorFilter.mode(
                               Colors.black.withOpacity(0.1), BlendMode.darken),

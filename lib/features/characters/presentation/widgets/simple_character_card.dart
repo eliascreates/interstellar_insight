@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:interstellar_insight/core/constants/colors.dart';
-import 'package:interstellar_insight/models/character.dart';
+import '../../domain/domain.dart';
 
 class SimpleCharacterCard extends StatelessWidget {
   const SimpleCharacterCard({
@@ -38,7 +38,7 @@ class SimpleCharacterCard extends StatelessWidget {
               )
             ],
             image: DecorationImage(
-                image: AssetImage(character.image), fit: BoxFit.cover),
+                image: NetworkImage(character.imageUrl), fit: BoxFit.cover),
           ),
         ),
         Positioned(
@@ -58,7 +58,7 @@ class SimpleCharacterCard extends StatelessWidget {
               ),
               const SizedBox(width: 10),
               Text(
-                character.name.split(' ').first,
+                character.firstName,
                 style: const TextStyle(
                     color: Colors.white, fontWeight: FontWeight.bold),
               )

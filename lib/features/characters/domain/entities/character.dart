@@ -12,26 +12,33 @@ class Character extends Equatable {
   final List<String> abilities;
   final String imageUrl;
 
-  const Character({
+  Character({
     required this.id,
     required this.name,
     required this.status,
     required this.species,
     required this.gender,
     required this.hair,
-    required this.alias,
+    required List<String> alias,
     required this.origin,
     required this.abilities,
     required this.imageUrl,
-  });
+  }) : alias = _formatAliasList(alias);
 
   String get firstName {
+    final x = name.split(' ').first.trim();
+    if (x.toLowerCase() == 'little' ||
+        x.toLowerCase() == 'the' ||
+        x.toLowerCase() == 'king' ||
+        x.toLowerCase() == 'queen') {
+      return name.trim();
+    }
     return name.split(' ').first;
   }
 
   String get description {
     final visibleAbilities = abilities.take(3);
-    
+
     if (visibleAbilities.isEmpty) {
       return "$firstName does not have any abilities";
     }
@@ -68,4 +75,27 @@ class Character extends Equatable {
         abilities,
         imageUrl,
       ];
+}
+
+List<String> _formatAliasList(List<String> aliasList) {
+  if (aliasList.isEmpty) return [];
+
+  // Defines a regular expression pattern to match and remove content within parentheses.
+  final RegExp parenthesesPattern = RegExp(r'\([^)]*\)');
+
+  List<String> formattedAliases = [];
+
+  for (String alias in aliasList) {
+    // Remove content within parentheses.
+    alias = alias.replaceAllMapped(parenthesesPattern, (match) => '');
+
+    // Remove words followed by "by" (including "by").
+    alias = alias.replaceAllMapped(RegExp(r'\s*by\s*\w+'), (match) => '');
+
+    alias = alias.trim();
+
+    formattedAliases.add(alias);
+  }
+
+  return formattedAliases;
 }

@@ -4,9 +4,9 @@ import 'endpoints.dart';
 import 'exceptions.dart';
 
 class ApiService {
-  final http.Client _client;
+  final http.Client client;
 
-  ApiService(this._client);
+  ApiService(this.client);
 
   Future<Map<String, dynamic>> _decodeResponse(http.Response response) async {
     final String responseBody = response.body;
@@ -23,11 +23,11 @@ class ApiService {
     }
   }
 
-  Future<Map<String, dynamic>> fetchCharacters() async {
+  Future<List<dynamic>> fetchCharacters() async {
     try {
-      final response = await _client.get(Uri.parse(Endpoints.characters));
+      final response = await client.get(Uri.parse(Endpoints.characters));
 
-      return _decodeResponse(response);
+      return _decodeResponse(response) as List<dynamic>;
     } catch (e) {
       throw NetworkException('Failed to fetch characters: $e');
     }
@@ -36,7 +36,7 @@ class ApiService {
   Future<Map<String, dynamic>> fetchCharacterById(String id) async {
     try {
       final response =
-          await _client.get(Uri.parse('${Endpoints.characters}/$id'));
+          await client.get(Uri.parse('${Endpoints.characters}/$id'));
       return _decodeResponse(response);
     } catch (e) {
       throw NetworkException('Failed to fetch a character by this id($id): $e');
@@ -45,7 +45,7 @@ class ApiService {
 
   Future<Map<String, dynamic>> fetchEpisodes() async {
     try {
-      final response = await _client.get(Uri.parse(Endpoints.episodes));
+      final response = await client.get(Uri.parse(Endpoints.episodes));
 
       return _decodeResponse(response);
     } catch (e) {
@@ -55,8 +55,7 @@ class ApiService {
 
   Future<Map<String, dynamic>> fetchEpisodeById(String id) async {
     try {
-      final response =
-          await _client.get(Uri.parse('${Endpoints.episodes}/$id'));
+      final response = await client.get(Uri.parse('${Endpoints.episodes}/$id'));
 
       return _decodeResponse(response);
     } catch (e) {
@@ -66,7 +65,7 @@ class ApiService {
 
   Future<Map<String, dynamic>> fetchLocations() async {
     try {
-      final response = await _client.get(Uri.parse(Endpoints.locations));
+      final response = await client.get(Uri.parse(Endpoints.locations));
 
       return _decodeResponse(response);
     } catch (e) {
@@ -77,7 +76,7 @@ class ApiService {
   Future<Map<String, dynamic>> fetchLocationById(String id) async {
     try {
       final response =
-          await _client.get(Uri.parse('${Endpoints.locations}/$id'));
+          await client.get(Uri.parse('${Endpoints.locations}/$id'));
 
       return _decodeResponse(response);
     } catch (e) {
@@ -87,7 +86,7 @@ class ApiService {
 
   Future<Map<String, dynamic>> fetchQuotes() async {
     try {
-      final response = await _client.get(Uri.parse(Endpoints.quotes));
+      final response = await client.get(Uri.parse(Endpoints.quotes));
 
       return _decodeResponse(response);
     } catch (e) {

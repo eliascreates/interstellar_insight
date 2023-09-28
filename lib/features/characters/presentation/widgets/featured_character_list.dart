@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:interstellar_insight/models/character.dart';
 import 'package:interstellar_insight/features/characters/presentation/widgets/featured_character_card.dart';
 
+import '../bloc/characters_bloc.dart';
 import '../cubit/featured_character_list_cubit_cubit.dart';
 import 'dot_indicators.dart';
 
@@ -38,6 +38,12 @@ class _FeaturedCharacterListState extends State<FeaturedCharacterList> {
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.sizeOf(context).height;
 
+    final characters =
+        context.select((CharactersBloc bloc) => bloc.state.characters);
+
+    if (characters.isEmpty) {
+      return const Center(child: Text('No Characters'));
+    }
     return Column(
       children: [
         SizedBox(height: screenHeight * 0.05),

@@ -1,25 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:interstellar_insight/features/characters/presentation/pages/character_page.dart';
+import 'package:interstellar_insight/features/characters/presentation/pages/characters_page.dart';
 
 import '../cubit/home_cubit.dart';
 import '../widgets/gnavigation_bar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => HomeCubit(),
-      child: const HomeView(),
-    );
-  }
-}
-
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +27,7 @@ class _HomeBody extends StatelessWidget {
 
     switch (state) {
       case HomeState.characters:
-        return const CharacterPage();
+        return const CharactersPage();
       case HomeState.episodes:
         return Center(
           child: Text(

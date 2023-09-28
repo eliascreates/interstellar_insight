@@ -7,5 +7,5 @@ import '../entities/character.dart';
 abstract class CharacterRepository {
   Future<Either<Failure, List<Character>>> getAllCharacters();
 
-  Future<Either<Failure, Character>> getCharacterById(String id);
+  Future<Either<Failure, Character>> getCharacterById(int id);
 }

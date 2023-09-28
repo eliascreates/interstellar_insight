@@ -1,10 +1,11 @@
 part of 'simple_character_tab_bar.dart';
 
 class SimpleCharacterTabView extends StatelessWidget {
-  const SimpleCharacterTabView(
-      {super.key,
-      required this.tabController,
-      required this.nestedScrollController});
+  const SimpleCharacterTabView({
+    super.key,
+    required this.tabController,
+    required this.nestedScrollController,
+  });
   final ScrollController nestedScrollController;
 
   final TabController tabController;

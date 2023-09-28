@@ -15,13 +15,17 @@ class CharacterRepositoryImpl implements CharacterRepository {
   Future<Either<Failure, List<Character>>> getAllCharacters() async {
     // TODO: implement getAllCharacters
     try {
+      print('sucesss sof far');
       final characters = await remoteDataSource.getAllCharacters();
+      print(characters);
 
       final charactersEntity =
           characters.map((character) => toEntity(character)).toList();
+
+      print(charactersEntity);
       return Right(charactersEntity);
     } catch (_) {
-      return Left(
+      return const Left(
         ServerFailure(
             message: 'Failed to fetch characters. Please try again later.'),
       );
@@ -29,14 +33,14 @@ class CharacterRepositoryImpl implements CharacterRepository {
   }
 
   @override
-  Future<Either<Failure, Character>> getCharacterById(String id) async {
+  Future<Either<Failure, Character>> getCharacterById(int id) async {
     // TODO: implement getCharacterById
     try {
       final character = await remoteDataSource.getCharacterById(id);
       final characterEntity = toEntity(character);
       return Right(characterEntity);
     } catch (_) {
-      return Left(
+      return const Left(
         ServerFailure(
             message: 'Failed to fetch character. Please try again later.'),
       );

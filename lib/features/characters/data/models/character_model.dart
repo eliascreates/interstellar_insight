@@ -1,6 +1,8 @@
 import 'dart:convert';
 
-class CharacterModel {
+import 'package:equatable/equatable.dart';
+
+class CharacterModel extends Equatable {
   final int id;
   final String name;
   final String status;
@@ -27,22 +29,24 @@ class CharacterModel {
 
   factory CharacterModel.fromMap(Map<String, dynamic> map) {
     return CharacterModel(
-      id: map['id'] as int,
-      name: map['name'] as String,
-      status: map['status'] as String,
-      species: map['species'] as String,
-      gender: map['gender'] as String,
-      hair: map['hair'] as String,
-      alias: List<String>.from((map['alias'] as List<String>)),
-      origin: map['origin'] as String,
-      abilities: List<String>.from((map['abilities'] as List<String>)),
-      imageUrl: map['img_rl'] as String,
+      id: map['id'] as int? ?? 0,
+      name: map['name'] as String? ?? '',
+      status: map['status'] as String? ?? '',
+      species: map['species'] as String? ?? '',
+      gender: map['gender'] as String? ?? '',
+      hair: map['hair'] as String? ?? '',
+      alias:
+          (map['alias'] as List<dynamic>?)?.map((e) => e.toString()).toList() ??
+              [],
+      origin: map['origin'] as String? ?? '',
+      abilities: (map['abilities'] as List<dynamic>?)
+              ?.map((e) => e.toString())
+              .toList() ??
+          [],
+      imageUrl: map['img_url'] as String? ?? '',
     );
   }
 
-  factory CharacterModel.fromJson(String source) =>
-      CharacterModel.fromMap(json.decode(source) as Map<String, dynamic>);
-      
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
@@ -54,7 +58,7 @@ class CharacterModel {
       'alias': alias,
       'origin': origin,
       'abilities': abilities,
-      'imageUrl': imageUrl,
+      'img_url': imageUrl,
     };
   }
 
@@ -64,4 +68,18 @@ class CharacterModel {
   String toString() {
     return 'CharacterModel(id: $id, name: $name, status: $status, species: $species, gender: $gender, hair: $hair, alias: $alias, origin: $origin, abilities: $abilities, img_url: $imageUrl)';
   }
+
+  @override
+  List<Object?> get props => [
+        id,
+        name,
+        status,
+        species,
+        gender,
+        hair,
+        alias,
+        origin,
+        abilities,
+        imageUrl,
+      ];
 }

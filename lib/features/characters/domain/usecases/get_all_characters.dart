@@ -6,9 +6,9 @@ import 'package:interstellar_insight/features/characters/domain/repositories/cha
 import '../entities/character.dart';
 
 class GetAllCharacters implements UseCase<List<Character>, NoParams> {
-  final CharacterRepository repository;
-
   GetAllCharacters(this.repository);
+
+  final CharacterRepository repository;
 
   @override
   Future<Either<Failure, List<Character>>> call(NoParams params) async {

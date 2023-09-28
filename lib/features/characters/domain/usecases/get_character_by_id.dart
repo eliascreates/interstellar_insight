@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:equatable/equatable.dart';
 import 'package:interstellar_insight/core/errors/failure.dart';
 import 'package:interstellar_insight/core/usecase/usecase.dart';
 import 'package:interstellar_insight/features/characters/domain/repositories/character_repository.dart';
@@ -6,9 +7,9 @@ import 'package:interstellar_insight/features/characters/domain/repositories/cha
 import '../entities/character.dart';
 
 class GetCharacterById extends UseCase<Character, CharacterByIdParams> {
-  final CharacterRepository repository;
-
   GetCharacterById(this.repository);
+
+  final CharacterRepository repository;
 
   @override
   Future<Either<Failure, Character>> call(CharacterByIdParams params) async {
@@ -16,8 +17,11 @@ class GetCharacterById extends UseCase<Character, CharacterByIdParams> {
   }
 }
 
-class CharacterByIdParams {
-  final String id;
+class CharacterByIdParams extends Equatable {
+  final int id;
 
   const CharacterByIdParams({required this.id});
+
+  @override
+  List<Object?> get props => [id];
 }

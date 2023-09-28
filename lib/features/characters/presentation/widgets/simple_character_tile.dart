@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:interstellar_insight/core/constants/colors.dart';
-import 'package:interstellar_insight/models/character.dart';
+// import 'package:interstellar_insight/models/character.dart';
+import '../../domain/domain.dart';
 
 class SimpleCharacterTile extends StatelessWidget {
   const SimpleCharacterTile({super.key, required this.character});
@@ -28,8 +29,8 @@ class SimpleCharacterTile extends StatelessWidget {
             ),
           ),
           child: CircleAvatar(
-            backgroundImage: Image.asset(
-              character.image,
+            backgroundImage: Image(
+              image: NetworkImage(character.imageUrl),
               alignment: Alignment.topCenter,
               fit: BoxFit.scaleDown,
               semanticLabel: character.description,
