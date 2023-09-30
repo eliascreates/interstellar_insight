@@ -61,7 +61,7 @@ class SimpleCharacterTile extends StatelessWidget {
           ],
         ),
         subtitle: Text(
-          "Also known as ${character.alias.first}",
+          character.singleAlias,
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
         ),

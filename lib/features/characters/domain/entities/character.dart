@@ -36,6 +36,12 @@ class Character extends Equatable {
     return name.split(' ').first;
   }
 
+  String get singleAlias {
+    if (alias.isEmpty) return "Who knows";
+
+    return "Code name ${alias.first}";
+  }
+
   String get description {
     final visibleAbilities = abilities.take(3);
 

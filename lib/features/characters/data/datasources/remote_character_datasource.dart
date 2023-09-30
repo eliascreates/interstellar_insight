@@ -28,7 +28,7 @@ class CharacterRemoteDataSourceImpl implements CharacterRemoteDataSource {
     if (response.statusCode == 200) {
       debugPrint('we are good. we have the data');
       final List<dynamic> data = jsonDecode(response.body);
-      log('here is the data: ${data.length}');
+      log('XXXhere is the List data: $data');
       List<CharacterModel> characters = [];
       for (var characterData in data) {
         final map = {
@@ -40,14 +40,11 @@ class CharacterRemoteDataSourceImpl implements CharacterRemoteDataSource {
           'hair': characterData['hair'],
           'origin': characterData['origin'],
           'img_url': characterData['img_url'],
+          'alias': characterData['alias'],
           'abilities': characterData['abilities'],
         };
         characters.add(CharacterModel.fromMap(map));
       }
-
-      // final characters = List<CharacterModel>.from(data.map<CharacterModel>(
-      //     (x) => CharacterModel.fromMap(x as Map<String, dynamic>)));
-      // data.map<CharacterModel>((json) => CharacterModel.fromMap(json)).toList();
 
       log('WE HAVE CHARACTERS - SIZE : ${characters.length}');
       return characters;

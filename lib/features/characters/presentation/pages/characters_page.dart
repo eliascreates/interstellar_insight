@@ -50,6 +50,13 @@ class _CharacterViewState extends State<CharacterView>
 
     return BlocBuilder<CharactersBloc, CharactersState>(
         builder: (context, state) {
+      // if (state.status == AppStatus.loading) {
+      //   return Center(
+      //     child: CircularProgressIndicator(
+      //       color: theme.colorScheme.primary,
+      //     ),
+      //   );
+      // } 
       if (state.characters.isEmpty) {
         return Center(
           child: CircularProgressIndicator(

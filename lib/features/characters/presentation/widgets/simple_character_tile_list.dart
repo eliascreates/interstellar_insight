@@ -23,12 +23,15 @@ class SimpleCharacterTileList extends StatelessWidget {
         clipBehavior: Clip.none,
         child: ListView.builder(
           controller: scrollController,
-          addRepaintBoundaries: true,
           shrinkWrap: true,
+          
           itemCount: characters.length,
           itemBuilder: (context, index) {
             final character = characters[index];
-            return SimpleCharacterTile(character: character);
+            if (index >= 0 && index < characters.length) {
+              return SimpleCharacterTile(character: character);
+            }
+            return const SizedBox();
           },
         ),
       ),

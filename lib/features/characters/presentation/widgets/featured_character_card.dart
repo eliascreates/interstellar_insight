@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:interstellar_insight/core/constants/colors.dart';
 
@@ -51,7 +52,6 @@ class FeaturedCharacterCard extends StatelessWidget {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
-                  // color: Colors.red,
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
@@ -85,26 +85,38 @@ class FeaturedCharacterCard extends StatelessWidget {
                 ),
                 child: Stack(
                   children: [
-                    Container(
-                      height: double.infinity,
-                      width: double.infinity,
-                      foregroundDecoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            Colors.black.withOpacity(0.3),
-                            Colors.transparent
-                          ],
-                          begin: Alignment.bottomCenter,
-                          end: Alignment.center,
-                        ),
+                    CachedNetworkImage(
+                      imageUrl: character.imageUrl,
+                      placeholder: (context, url) => Container(
+                        height: double.infinity,
+                        width: double.infinity,
+                        color: Colors.white,
                       ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        image: DecorationImage(
-                          image: NetworkImage(character.imageUrl),
-                          fit: BoxFit.cover,
-                          colorFilter: ColorFilter.mode(
-                              Colors.black.withOpacity(0.1), BlendMode.darken),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
+                      fit: BoxFit.cover,
+                      imageBuilder: (context, imageProvider) => Container(
+                        height: double.infinity,
+                        width: double.infinity,
+                        foregroundDecoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              Colors.black.withOpacity(0.3),
+                              Colors.transparent
+                            ],
+                            begin: Alignment.bottomCenter,
+                            end: Alignment.center,
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          image: DecorationImage(
+                            image: imageProvider,
+                            fit: BoxFit.cover,
+                            colorFilter: ColorFilter.mode(
+                                Colors.black.withOpacity(0.1),
+                                BlendMode.darken),
+                          ),
                         ),
                       ),
                     ),
@@ -141,12 +153,7 @@ class FeaturedCharacterCard extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Icon(Icons.circle,
-                                  color: character.status == 'Alive'
-                                      ? aliveStatusColor
-                                      : character.status == 'Dead'
-                                          ? deceasedStatusColor
-                                          : unknownStatusColor,
-                                  size: 10),
+                                  color: _getStatusColor(), size: 10),
                               Text(character.species,
                                   style: const TextStyle(
                                       color: Colors.white, fontSize: 10)),
@@ -159,19 +166,6 @@ class FeaturedCharacterCard extends StatelessWidget {
                         ],
                       ),
                     ),
-                    // Padding(
-                    //   padding: const EdgeInsets.only(top: 10, right: 10),
-                    //   child: Align(
-                    //     alignment: Alignment.topRight,
-                    //     child: Text(
-                    //       '[ ${character.status} ]',
-                    //       style: const TextStyle(
-                    //         fontWeight: FontWeight.w600,
-                    //         color: Colors.white,
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
                   ],
                 ),
               ),
@@ -180,5 +174,15 @@ class FeaturedCharacterCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Color _getStatusColor() {
+    if (character.status == 'Alive') {
+      return aliveStatusColor;
+    } else if (character.status == 'Dead') {
+      return deceasedStatusColor;
+    } else {
+      return unknownStatusColor;
+    }
   }
 }
