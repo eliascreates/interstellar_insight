@@ -16,14 +16,14 @@ void main() {
       usecase = GetCharacterById(mockCharacterRepository);
     });
     const testId = 1;
-    final character = Character(
+    const character = Character(
       id: 1,
       name: "Gary Goodspeed",
       status: "Alive",
       species: "Human",
       gender: "Male",
       hair: "Blonde",
-      alias: const [
+      alias: [
         "The Gary (by Lord Commander and Invictus)",
         "Thunder Bandit(code name)",
         "Star Dragon(new code name)",
@@ -43,7 +43,7 @@ void main() {
         "The Fool Who Died A Thousand Deaths (by Invictus)"
       ],
       origin: "Earth",
-      abilities: const [
+      abilities: [
         "Piloting",
         "Marksmanship",
         "Hand-to-hand combat",
@@ -60,13 +60,13 @@ void main() {
     test('should return a single [Character]', () async {
       //Arrange
       when(mockCharacterRepository.getCharacterById(testId))
-          .thenAnswer((_) async => Right(character));
+          .thenAnswer((_) async => const Right(character));
 
       //Act
       final result = await usecase(const CharacterByIdParams(id: testId));
 
       //Assert
-      expect(result, Right(character));
+      expect(result, const Right(character));
       verify(mockCharacterRepository.getCharacterById(testId));
       verifyNoMoreInteractions(mockCharacterRepository);
     });

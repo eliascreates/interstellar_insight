@@ -2,7 +2,10 @@ import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:interstellar_insight/config/routes/custom_page_route.dart';
 import 'package:interstellar_insight/core/extension/character_status.dart';
+import 'package:interstellar_insight/core/shared/widgets/shared_widgets.dart';
+import 'package:interstellar_insight/features/characters/presentation/pages/characters_detail_page.dart';
 
 import '../../domain/domain.dart';
 
@@ -34,6 +37,7 @@ class FeaturedCharacterCard extends StatelessWidget {
     } else {
       _cardScale = _minScale + pageFract * _scaleDiff;
     }
+
     final shadowColor = Theme.of(context).shadowColor;
 
     return Transform.scale(
@@ -76,127 +80,119 @@ class FeaturedCharacterCard extends StatelessWidget {
             ),
 
             //Image
-            FractionallySizedBox(
-              heightFactor: 0.9,
-              child: Container(
-                clipBehavior: Clip.antiAlias,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Stack(
-                  children: [
-                    CachedNetworkImage(
-                      imageUrl: character.imageUrl,
-                      placeholder: (context, url) =>
-                          const _FeaturedImageCardPlaceholder(),
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.error),
-                      fit: BoxFit.cover,
-                      imageBuilder: (context, imageProvider) => Container(
-                        height: double.infinity,
-                        width: double.infinity,
-                        foregroundDecoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              Colors.black.withOpacity(0.3),
-                              Colors.transparent
-                            ],
-                            begin: Alignment.bottomCenter,
-                            end: Alignment.center,
+            GestureDetector(
+              onTap: () => Navigator.push(
+                context,
+                FadePageRoute(
+                    page: CharactersDetailPage(
+                  character: character,
+                  widgetName: 'FeaturedCharacterCard',
+                )),
+              ),
+              child: FractionallySizedBox(
+                heightFactor: 0.9,
+                child: Container(
+                  clipBehavior: Clip.antiAlias,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  child: Stack(
+                    children: [
+                      Hero(
+                        tag: '${character.imageUrl}-FeaturedCharacterCard',
+                        child: CachedNetworkImage(
+                          imageUrl: character.imageUrl,
+                          placeholder: (context, url) =>
+                              const CharacterImagePlaceholder(
+                            height: double.infinity,
+                            width: double.infinity,
                           ),
-                        ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          image: DecorationImage(
-                            image: imageProvider,
-                            fit: BoxFit.cover,
-                            colorFilter: ColorFilter.mode(
-                              Colors.black.withOpacity(0.1),
-                              BlendMode.darken,
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error),
+                          fit: BoxFit.cover,
+                          imageBuilder: (context, imageProvider) => Container(
+                            height: double.infinity,
+                            width: double.infinity,
+                            foregroundDecoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Colors.black.withOpacity(0.3),
+                                  Colors.transparent
+                                ],
+                                begin: Alignment.bottomCenter,
+                                end: Alignment.center,
+                              ),
+                            ),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              image: DecorationImage(
+                                image: imageProvider,
+                                fit: BoxFit.cover,
+                                colorFilter: ColorFilter.mode(
+                                  Colors.black.withOpacity(0.1),
+                                  BlendMode.darken,
+                                ),
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 20,
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  character.name,
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w600,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 20,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    character.name,
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w600,
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 10),
-                          Text(
-                            character.description,
-                            style: const TextStyle(
-                                color: Colors.white, fontSize: 10),
-                          ),
-                          const SizedBox(height: 10),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Icon(Icons.circle,
-                                  color: character.cleanStatus.color, size: 10),
-                              Text(character.species,
-                                  style: const TextStyle(
-                                      color: Colors.white, fontSize: 10)),
-                              Text("Origin: ${character.origin}",
-                                  style: const TextStyle(
-                                      color: Colors.white, fontSize: 10)),
-                              const SizedBox(height: 5),
-                            ],
-                          ),
-                        ],
+                              ],
+                            ),
+                            const SizedBox(height: 10),
+                            Text(
+                              character.description,
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 10),
+                            ),
+                            const SizedBox(height: 10),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Icon(Icons.circle,
+                                    color: character.cleanStatus.color,
+                                    size: 10),
+                                Text(character.species,
+                                    style: const TextStyle(
+                                        color: Colors.white, fontSize: 10)),
+                                Text("Origin: ${character.origin}",
+                                    style: const TextStyle(
+                                        color: Colors.white, fontSize: 10)),
+                                const SizedBox(height: 5),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class _FeaturedImageCardPlaceholder extends StatelessWidget {
-  const _FeaturedImageCardPlaceholder();
-
-  @override
-  Widget build(BuildContext context) {
-    final shadowColor = Theme.of(context).shadowColor;
-
-    return Container(
-      height: double.infinity,
-      width: double.infinity,
-      foregroundDecoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [shadowColor.withOpacity(0.3), Colors.transparent],
-          begin: Alignment.bottomCenter,
-          end: Alignment.center,
-        ),
-      ),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(15),
       ),
     );
   }

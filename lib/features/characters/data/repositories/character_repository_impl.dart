@@ -13,16 +13,12 @@ class CharacterRepositoryImpl implements CharacterRepository {
 
   @override
   Future<Either<Failure, List<Character>>> getAllCharacters() async {
-    // TODO: implement getAllCharacters
     try {
-      print('sucesss sof far');
       final characters = await remoteDataSource.getAllCharacters();
-      print(characters);
 
       final charactersEntity =
           characters.map((character) => toEntity(character)).toList();
 
-      print(charactersEntity);
       return Right(charactersEntity);
     } catch (_) {
       return const Left(

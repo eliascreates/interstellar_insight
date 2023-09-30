@@ -110,14 +110,14 @@ void main() {
 
     // ignore: unused_local_variable
     final characterEntities = [
-      Character(
+      const Character(
           id: 1,
           name: "Gary Goodspeed",
           status: "Alive",
           species: "Human",
           gender: "Male",
           hair: "Blonde",
-          alias: const [
+          alias: [
             "The Gary (by Lord Commander and Invictus)",
             "Thunder Bandit(code name)",
             "Star Dragon(new code name)",
@@ -137,7 +137,7 @@ void main() {
             "The Fool Who Died A Thousand Deaths (by Invictus)"
           ],
           origin: "Earth",
-          abilities: const [
+          abilities: [
             "Piloting",
             "Marksmanship",
             "Hand-to-hand combat",
@@ -149,14 +149,14 @@ void main() {
           ],
           imageUrl:
               "https://finalspaceapi.com/api/character/avatar/gary_goodspeed.png"),
-      Character(
+      const Character(
           id: 2,
           name: "Mooncake",
           status: "Unknown",
           species: "Mooncake's Species",
           gender: "None (referred to as male)",
           hair: "None",
-          alias: const [
+          alias: [
             "Specimen E - 351",
             "Little Buddy",
             "Planet Destroyer",
@@ -168,27 +168,27 @@ void main() {
             "Booger Ball (by Kevin Van Newton)"
           ],
           origin: "Outer space",
-          abilities: const [
+          abilities: [
             "Hovering",
             "Firing Laser Beams",
             "Planetary Destruction"
           ],
           imageUrl:
               "https://finalspaceapi.com/api/character/avatar/mooncake.jpg"),
-      Character(
+      const Character(
           id: 3,
           name: "Quinn Ergon",
           status: "Alive",
           species: "Human",
           gender: "Female",
           hair: "Dark Brown",
-          alias: const [
+          alias: [
             "Nightfall(codename)",
             "Muy Bueno Super Spicy Lady (by Gary)",
             "Magnificent Goddess (by Biskit)"
           ],
           origin: "Earth",
-          abilities: const [
+          abilities: [
             "Astrophysicist",
             "Engineer",
             "Piloting",

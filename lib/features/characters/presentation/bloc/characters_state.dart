@@ -28,7 +28,7 @@ class CharactersState extends Equatable {
 
   @override
   String toString() =>
-      'TodoState(todos: ${characters.length}, status: $status, errorMessage: $errorMessage)';
+      'CharactersState(characters: ${characters.length}, status: $status, errorMessage: $errorMessage)';
 
   @override
   List<Object?> get props => [characters, status, errorMessage];

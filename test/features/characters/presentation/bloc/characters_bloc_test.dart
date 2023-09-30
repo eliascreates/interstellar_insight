@@ -33,14 +33,14 @@ void main() {
 
   group('CharactersFetchedAll', () {
     final characterEntities = [
-      Character(
+      const Character(
         id: 1,
         name: "Gary Goodspeed",
         status: "Alive",
         species: "Human",
         gender: "Male",
         hair: "Blonde",
-        alias: const [
+        alias: [
           "The Gary (by Lord Commander and Invictus)",
           "Thunder Bandit(code name)",
           "Star Dragon(new code name)",
@@ -60,7 +60,7 @@ void main() {
           "The Fool Who Died A Thousand Deaths (by Invictus)"
         ],
         origin: "Earth",
-        abilities: const [
+        abilities: [
           "Piloting",
           "Marksmanship",
           "Hand-to-hand combat",
@@ -73,14 +73,14 @@ void main() {
         imageUrl:
             "https://finalspaceapi.com/api/character/avatar/gary_goodspeed.png",
       ),
-      Character(
+      const Character(
           id: 2,
           name: "Mooncake",
           status: "Unknown",
           species: "Mooncake's Species",
           gender: "None (referred to as male)",
           hair: "None",
-          alias: const [
+          alias: [
             "Specimen E - 351",
             "Little Buddy",
             "Planet Destroyer",
@@ -92,27 +92,27 @@ void main() {
             "Booger Ball (by Kevin Van Newton)"
           ],
           origin: "Outer space",
-          abilities: const [
+          abilities: [
             "Hovering",
             "Firing Laser Beams",
             "Planetary Destruction"
           ],
           imageUrl:
               "https://finalspaceapi.com/api/character/avatar/mooncake.jpg"),
-      Character(
+      const Character(
           id: 3,
           name: "Quinn Ergon",
           status: "Alive",
           species: "Human",
           gender: "Female",
           hair: "Dark Brown",
-          alias: const [
+          alias: [
             "Nightfall(codename)",
             "Muy Bueno Super Spicy Lady (by Gary)",
             "Magnificent Goddess (by Biskit)"
           ],
           origin: "Earth",
-          abilities: const [
+          abilities: [
             "Astrophysicist",
             "Engineer",
             "Piloting",
@@ -153,14 +153,14 @@ void main() {
 
   group('CharactersFetchedById', () {
     const testId = 1;
-    final character = Character(
+    const character = Character(
       id: testId,
       name: "Gary Goodspeed",
       status: "Alive",
       species: "Human",
       gender: "Male",
       hair: "Blonde",
-      alias: const [
+      alias: [
         "The Gary (by Lord Commander and Invictus)",
         "Thunder Bandit(code name)",
         "Star Dragon(new code name)",
@@ -180,7 +180,7 @@ void main() {
         "The Fool Who Died A Thousand Deaths (by Invictus)"
       ],
       origin: "Earth",
-      abilities: const [
+      abilities: [
         "Piloting",
         "Marksmanship",
         "Hand-to-hand combat",
@@ -198,7 +198,7 @@ void main() {
       'should get data from the getCharacterById usecase',
       build: () {
         when(mockGetCharacterById(const CharacterByIdParams(id: testId)))
-            .thenAnswer((_) async => Right(character));
+            .thenAnswer((_) async => const Right(character));
         return bloc;
       },
       act: (bloc) => bloc.add(const CharactersFetchedById(id: testId)),
@@ -210,7 +210,7 @@ void main() {
       'should emit [AppStatus.loading, AppStatus.success] when getCharacterById usecase is successful',
       build: () {
         when(mockGetCharacterById(const CharacterByIdParams(id: testId)))
-            .thenAnswer((_) async => Right(character));
+            .thenAnswer((_) async => const Right(character));
         return bloc;
       },
       act: (bloc) => bloc.add(const CharactersFetchedById(id: testId)),
