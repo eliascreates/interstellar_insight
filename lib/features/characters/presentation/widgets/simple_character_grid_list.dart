@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:interstellar_insight/core/extension/extension.dart';
 import 'package:interstellar_insight/features/characters/presentation/widgets/simple_character_card.dart';
 
 import '../bloc/characters_bloc.dart';
 
-enum CardSize { small, medium, large }
 class SimpleCharacterGridList extends StatelessWidget {
   const SimpleCharacterGridList({super.key, required this.scrollController});
   final ScrollController scrollController;
@@ -14,10 +14,6 @@ class SimpleCharacterGridList extends StatelessWidget {
   Widget build(BuildContext context) {
     final characters =
         context.select((CharactersBloc bloc) => bloc.state.characters);
-
-    if (characters.isEmpty) {
-      return const Center(child: Text('No Characters'));
-    }
 
     return RepaintBoundary(
       child: SingleChildScrollView(
@@ -46,25 +42,12 @@ class SimpleCharacterGridList extends StatelessWidget {
   }
 
   CardSize determineCardSize(String name) {
-    if (name.length < 5) {
-      return CardSize.small;
-    } else if (name.length < 15) {
-      return CardSize.medium;
-    } else {
+    if (name.length < 5 && name != 'Viro') {
       return CardSize.large;
-    }
-  }
-}
-
-extension X on CardSize {
-  double get size {
-    switch (this) {
-      case CardSize.small:
-        return 160.0;
-      case CardSize.medium:
-        return 180.0;
-      case CardSize.large:
-        return 240.0;
+    } else if (name.length < 10 && name != 'Werthrent') {
+      return CardSize.small;
+    } else {
+      return CardSize.medium;
     }
   }
 }

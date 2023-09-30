@@ -41,9 +41,6 @@ class _FeaturedCharacterListState extends State<FeaturedCharacterList> {
     final characters =
         context.select((CharactersBloc bloc) => bloc.state.characters);
 
-    if (characters.isEmpty) {
-      return const Center(child: Text('No Characters'));
-    }
     return Column(
       children: [
         SizedBox(height: screenHeight * 0.05),

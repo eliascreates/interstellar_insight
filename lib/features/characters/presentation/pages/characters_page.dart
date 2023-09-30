@@ -46,24 +46,9 @@ class _CharacterViewState extends State<CharacterView>
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
 
     return BlocBuilder<CharactersBloc, CharactersState>(
         builder: (context, state) {
-      // if (state.status == AppStatus.loading) {
-      //   return Center(
-      //     child: CircularProgressIndicator(
-      //       color: theme.colorScheme.primary,
-      //     ),
-      //   );
-      // } 
-      if (state.characters.isEmpty) {
-        return Center(
-          child: CircularProgressIndicator(
-            color: theme.colorScheme.primary,
-          ),
-        );
-      }
 
       return NestedScrollView(
         controller: _scrollController,

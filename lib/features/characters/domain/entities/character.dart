@@ -1,4 +1,6 @@
 import 'package:equatable/equatable.dart';
+import 'package:interstellar_insight/core/extension/character_status.dart';
+import 'package:interstellar_insight/core/functions/format_alias_list.dart';
 
 class Character extends Equatable {
   final int id;
@@ -7,12 +9,12 @@ class Character extends Equatable {
   final String species;
   final String gender;
   final String hair;
-  final List<String> alias;
+  final List<String> _alias;
   final String origin;
   final List<String> abilities;
   final String imageUrl;
 
-  Character({
+  const Character({
     required this.id,
     required this.name,
     required this.status,
@@ -23,45 +25,48 @@ class Character extends Equatable {
     required this.origin,
     required this.abilities,
     required this.imageUrl,
-  }) : alias = _formatAliasList(alias);
+  }) : _alias = alias;
 
   String get firstName {
-    final x = name.split(' ').first.trim();
-    if (x.toLowerCase() == 'little' ||
-        x.toLowerCase() == 'the' ||
-        x.toLowerCase() == 'king' ||
-        x.toLowerCase() == 'queen') {
+    final wordsToCheck = {'little', 'the', 'general', 'king', 'queen'};
+    final nameParts = name.trim().split(' ');
+    final hasWord = wordsToCheck.contains(nameParts.first.toLowerCase());
+    if (nameParts.isNotEmpty && hasWord) {
       return name.trim();
     }
-    return name.split(' ').first;
+    return nameParts.first;
   }
 
-  String get singleAlias {
-    if (alias.isEmpty) return "Who knows";
+  List<String> get alias => formatAliasList(_alias);
 
-    return "Code name ${alias.first}";
+  String get singleAlias {
+    if (_alias.isEmpty) return "No known alias";
+
+    return "Code name: ${alias.first}";
   }
 
   String get description {
-    final visibleAbilities = abilities.take(3);
-
-    if (visibleAbilities.isEmpty) {
+    if (abilities.isEmpty) {
       return "$firstName does not have any abilities";
     }
 
-    final stringAbilities = visibleAbilities.take(3).join(', ');
-    final remainingAbilities = visibleAbilities.length > 3 ? ', and more' : '';
+    final visibleAbilities = abilities.take(3).toList();
+    final remainingAbilitiesCount = abilities.length - visibleAbilities.length;
+
+    String abilitiesDescription = visibleAbilities.join(', ');
 
     if (visibleAbilities.length == 2 || visibleAbilities.length == 3) {
-      final lastCommaIndex = stringAbilities.lastIndexOf(',');
-      final modifiedVisibleAbilities = stringAbilities.replaceRange(
+      final lastCommaIndex = abilitiesDescription.lastIndexOf(',');
+      abilitiesDescription = abilitiesDescription.replaceRange(
           lastCommaIndex, lastCommaIndex + 1, ', and');
-
-      return "$firstName's abilities include $modifiedVisibleAbilities$remainingAbilities";
+    } else if (remainingAbilitiesCount > 0) {
+      abilitiesDescription += ', and $remainingAbilitiesCount more';
     }
 
-    return "$firstName's abilities include $stringAbilities$remainingAbilities";
+    return "$firstName's abilities include $abilitiesDescription";
   }
+
+  CharacterStatus get cleanStatus => CharacterStatusX.fromString(status);
 
   @override
   String toString() {
@@ -81,27 +86,4 @@ class Character extends Equatable {
         abilities,
         imageUrl,
       ];
-}
-
-List<String> _formatAliasList(List<String> aliasList) {
-  if (aliasList.isEmpty) return [];
-
-  // Defines a regular expression pattern to match and remove content within parentheses.
-  final RegExp parenthesesPattern = RegExp(r'\([^)]*\)');
-
-  List<String> formattedAliases = [];
-
-  for (String alias in aliasList) {
-    // Remove content within parentheses.
-    alias = alias.replaceAllMapped(parenthesesPattern, (match) => '');
-
-    // Remove words followed by "by" (including "by").
-    alias = alias.replaceAllMapped(RegExp(r'\s*by\s*\w+'), (match) => '');
-
-    alias = alias.trim();
-
-    formattedAliases.add(alias);
-  }
-
-  return formattedAliases;
 }

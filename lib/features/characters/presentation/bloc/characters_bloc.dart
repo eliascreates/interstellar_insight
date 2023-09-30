@@ -23,7 +23,7 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
     CharactersFetchedAll event,
     Emitter<CharactersState> emit,
   ) async {
-    // emit(state.copyWith(status: AppStatus.loading));
+    emit(state.copyWith(status: AppStatus.loading));
 
     final result = await getAllCharacters(const NoParams());
 

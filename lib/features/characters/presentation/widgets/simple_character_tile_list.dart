@@ -14,24 +14,16 @@ class SimpleCharacterTileList extends StatelessWidget {
     final characters =
         context.select((CharactersBloc bloc) => bloc.state.characters);
 
-    if (characters.isEmpty) {
-      return const Center(child: Text('No Characters'));
-    }
-
     return RepaintBoundary(
       child: SingleChildScrollView(
         clipBehavior: Clip.none,
         child: ListView.builder(
           controller: scrollController,
           shrinkWrap: true,
-          
           itemCount: characters.length,
           itemBuilder: (context, index) {
             final character = characters[index];
-            if (index >= 0 && index < characters.length) {
-              return SimpleCharacterTile(character: character);
-            }
-            return const SizedBox();
+            return SimpleCharacterTile(character: character);
           },
         ),
       ),

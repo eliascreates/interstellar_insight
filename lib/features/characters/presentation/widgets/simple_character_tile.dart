@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:interstellar_insight/core/constants/colors.dart';
-// import 'package:interstellar_insight/models/character.dart';
+import 'package:interstellar_insight/core/extension/character_status.dart';
 import '../../domain/domain.dart';
 
 class SimpleCharacterTile extends StatelessWidget {
@@ -15,28 +14,36 @@ class SimpleCharacterTile extends StatelessWidget {
         onTap: () {},
         shape:
             ContinuousRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        leading: Container(
-          padding: const EdgeInsets.all(2),
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(
-              width: 1,
-              color: (character.status == 'Alive'
-                  ? aliveStatusColor
-                  : character.status == 'Dead'
-                      ? deceasedStatusColor
-                      : unknownStatusColor),
+        leading: Stack(
+          alignment: Alignment.center,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                      width: 1, color: Theme.of(context).disabledColor)),
+              child: CircleAvatar(
+                radius: 30,
+                backgroundColor: Colors.white,
+                backgroundImage: NetworkImage(character.imageUrl),
+              ),
             ),
-          ),
-          child: CircleAvatar(
-            backgroundImage: Image(
-              image: NetworkImage(character.imageUrl),
-              alignment: Alignment.topCenter,
-              fit: BoxFit.scaleDown,
-              semanticLabel: character.description,
-            ).image,
-            radius: 30,
-          ),
+            Positioned(
+              bottom: 0,
+              child: Transform.translate(
+                offset: const Offset(60 / 3, 0),
+                child: Container(
+                  padding: const EdgeInsets.all(1),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).canvasColor,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(Icons.circle,
+                      color: character.cleanStatus.color, size: 15),
+                ),
+              ),
+            ),
+          ],
         ),
         title: Row(
           mainAxisSize: MainAxisSize.min,
@@ -48,16 +55,6 @@ class SimpleCharacterTile extends StatelessWidget {
                     const TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
               ),
             ),
-            // const SizedBox(width: 10),
-            // Icon(
-            //   Icons.circle,
-            //   size: 10,
-            //   color: character.status == 'Alive'
-            //       ? aliveStatusColor
-            //       : character.status == 'Dead'
-            //           ? deceasedStatusColor
-            //           : unknownStatusColor,
-            // ),
           ],
         ),
         subtitle: Text(

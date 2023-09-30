@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:interstellar_insight/core/constants/colors.dart';
+import 'package:interstellar_insight/core/extension/character_status.dart';
 
 import '../../domain/domain.dart';
 
@@ -87,11 +87,8 @@ class FeaturedCharacterCard extends StatelessWidget {
                   children: [
                     CachedNetworkImage(
                       imageUrl: character.imageUrl,
-                      placeholder: (context, url) => Container(
-                        height: double.infinity,
-                        width: double.infinity,
-                        color: Colors.white,
-                      ),
+                      placeholder: (context, url) =>
+                          const _FeaturedImageCardPlaceholder(),
                       errorWidget: (context, url, error) =>
                           const Icon(Icons.error),
                       fit: BoxFit.cover,
@@ -114,15 +111,18 @@ class FeaturedCharacterCard extends StatelessWidget {
                             image: imageProvider,
                             fit: BoxFit.cover,
                             colorFilter: ColorFilter.mode(
-                                Colors.black.withOpacity(0.1),
-                                BlendMode.darken),
+                              Colors.black.withOpacity(0.1),
+                              BlendMode.darken,
+                            ),
                           ),
                         ),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 20),
+                        horizontal: 20,
+                        vertical: 20,
+                      ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -153,7 +153,7 @@ class FeaturedCharacterCard extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Icon(Icons.circle,
-                                  color: _getStatusColor(), size: 10),
+                                  color: character.cleanStatus.color, size: 10),
                               Text(character.species,
                                   style: const TextStyle(
                                       color: Colors.white, fontSize: 10)),
@@ -175,14 +175,29 @@ class FeaturedCharacterCard extends StatelessWidget {
       ),
     );
   }
+}
 
-  Color _getStatusColor() {
-    if (character.status == 'Alive') {
-      return aliveStatusColor;
-    } else if (character.status == 'Dead') {
-      return deceasedStatusColor;
-    } else {
-      return unknownStatusColor;
-    }
+class _FeaturedImageCardPlaceholder extends StatelessWidget {
+  const _FeaturedImageCardPlaceholder();
+
+  @override
+  Widget build(BuildContext context) {
+    final shadowColor = Theme.of(context).shadowColor;
+
+    return Container(
+      height: double.infinity,
+      width: double.infinity,
+      foregroundDecoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [shadowColor.withOpacity(0.3), Colors.transparent],
+          begin: Alignment.bottomCenter,
+          end: Alignment.center,
+        ),
+      ),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(15),
+      ),
+    );
   }
 }
