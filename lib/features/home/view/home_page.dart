@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:interstellar_insight/features/characters/presentation/pages/characters_page.dart';
+import 'package:interstellar_insight/features/episodes/presentation/pages/episodes_page.dart';
 
 import '../cubit/home_cubit.dart';
 import '../widgets/gnavigation_bar.dart';
@@ -29,12 +30,7 @@ class _HomeBody extends StatelessWidget {
       case HomeState.characters:
         return const CharactersPage();
       case HomeState.episodes:
-        return Center(
-          child: Text(
-            'Episode Page',
-            style: Theme.of(context).textTheme.headlineMedium,
-          ),
-        );
+        return const EpisodesPage();
       case HomeState.locations:
         return Center(
           child: Text(
