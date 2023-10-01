@@ -7,6 +7,7 @@ class EpisodeDetailImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final shadowColor = Theme.of(context).shadowColor;
     return Hero(
       tag: imageUrl,
       child: Container(
@@ -16,7 +17,7 @@ class EpisodeDetailImage extends StatelessWidget {
           borderRadius: BorderRadius.circular(15.0),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.3),
+              color: shadowColor.withOpacity(0.3),
               spreadRadius: 1,
               blurRadius: 5,
               offset: const Offset(1, 5),

@@ -19,7 +19,7 @@ class EpisodeCharacterCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(15),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.3),
+            color: shadowColor.withOpacity(0.3),
             spreadRadius: 1,
             blurRadius: 5,
             offset: const Offset(1, 5),
