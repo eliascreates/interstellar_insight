@@ -12,16 +12,12 @@ class SimpleCharacterTileList extends StatelessWidget {
     final characters =
         context.select((CharactersBloc bloc) => bloc.state.characters);
 
-    return CustomScrollView(
-      slivers: [
-        SliverList.builder(
-          itemCount: characters.length,
-          itemBuilder: (context, index) {
-            final character = characters[index];
-            return SimpleCharacterTile(character: character);
-          },
-        ),
-      ],
+    return ListView.builder(
+      itemCount: characters.length,
+      itemBuilder: (context, index) {
+        final character = characters[index];
+        return SimpleCharacterTile(character: character);
+      },
     );
   }
 }

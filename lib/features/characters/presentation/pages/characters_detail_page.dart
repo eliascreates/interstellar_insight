@@ -13,7 +13,15 @@ class CharactersDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: FittedBox(child: Text(character.name))),
+      appBar: AppBar(
+        iconTheme: const IconThemeData(size: 30),
+        title: FittedBox(
+          child: Text(
+            character.name,
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
+      ),
       body: CharactersPageView(character: character, widgetName: widgetName),
     );
   }
