@@ -52,7 +52,7 @@ class MyAppView extends StatelessWidget {
         brightness: Brightness.dark,
         seedColor: Colors.deepPurple,
       )),
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.light,
       home: const HomePage(),
     );
   }

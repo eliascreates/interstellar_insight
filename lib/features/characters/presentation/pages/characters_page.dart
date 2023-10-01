@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../bloc/characters_bloc.dart';
 import '../cubit/featured_character_list_cubit_cubit.dart';
 import '../widgets/widgets.dart';
 
@@ -31,7 +30,6 @@ class CharacterView extends StatefulWidget {
 class _CharacterViewState extends State<CharacterView>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  final _scrollController = ScrollController();
   @override
   void initState() {
     super.initState();
@@ -46,32 +44,27 @@ class _CharacterViewState extends State<CharacterView>
 
   @override
   Widget build(BuildContext context) {
-
-    return BlocBuilder<CharactersBloc, CharactersState>(
-        builder: (context, state) {
-
-      return NestedScrollView(
-        controller: _scrollController,
-        floatHeaderSlivers: true,
-        headerSliverBuilder: (context, isInnerBoxScrolled) {
-          return [
-            const SliverAppBar(title: Text('Final Space')),
-            const SliverToBoxAdapter(child: FeaturedCharacterList()),
-            SliverAppBar(
-              floating: true,
-              pinned: true,
-              snap: true,
-              toolbarHeight: 0,
-              bottom: SimpleCharacterTabBar(tabController: _tabController),
-            ),
-          ];
-        },
-        body: SimpleCharacterTabView(
-          tabController: _tabController,
-          nestedScrollController: _scrollController,
-        ),
-      );
-    });
+    return NestedScrollView(
+      headerSliverBuilder: (context, innerBoxIsScrolled) {
+        return [
+          const SliverAppBar(title: Text('Final Space')),
+          const SliverToBoxAdapter(child: FeaturedCharacterList()),
+          SliverAppBar(
+            floating: true,
+            pinned: true,
+            snap: true,
+            toolbarHeight: 0,
+            bottom: SimpleCharacterTabBar(tabController: _tabController),
+          ),
+        ];
+      },
+      body: TabBarView(
+        controller: _tabController,
+        children: const [
+          SimpleCharacterGridList(),
+          SimpleCharacterTileList(),
+        ],
+      ),
+    );
   }
 }
-

@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'simple_character_grid_list.dart';
-import 'simple_character_tile_list.dart';
-
-part 'simple_character_tab_view.dart';
-
 class SimpleCharacterTabBar extends TabBar {
   const SimpleCharacterTabBar({super.key, required TabController tabController})
       : super(

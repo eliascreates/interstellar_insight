@@ -13,7 +13,7 @@ class CharactersDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: FittedBox(child: Text(character.name))),
       body: CharactersPageView(character: character, widgetName: widgetName),
     );
   }
@@ -30,6 +30,7 @@ class CharactersPageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final shadowColor = Theme.of(context).shadowColor;
     return Column(
       children: [
         Hero(
@@ -46,6 +47,14 @@ class CharactersPageView extends StatelessWidget {
               margin: const EdgeInsets.symmetric(horizontal: 10),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    color: shadowColor.withOpacity(0.3),
+                    spreadRadius: 1,
+                    blurRadius: 5,
+                    offset: const Offset(1, 5),
+                  ),
+                ],
                 image: DecorationImage(
                   image: imageProvider,
                   fit: BoxFit.cover,

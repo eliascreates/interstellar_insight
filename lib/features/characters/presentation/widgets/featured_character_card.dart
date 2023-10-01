@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:interstellar_insight/config/routes/custom_page_route.dart';
 import 'package:interstellar_insight/core/extension/character_status.dart';
 import 'package:interstellar_insight/core/shared/widgets/shared_widgets.dart';
-import 'package:interstellar_insight/features/characters/presentation/pages/characters_detail_page.dart';
+import '../pages/characters_detail_page.dart';
 
 import '../../domain/domain.dart';
 
@@ -114,6 +114,7 @@ class FeaturedCharacterCard extends StatelessWidget {
                             height: double.infinity,
                             width: double.infinity,
                             foregroundDecoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
                               gradient: LinearGradient(
                                 colors: [
                                   Colors.black.withOpacity(0.3),

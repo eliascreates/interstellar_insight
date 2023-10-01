@@ -20,6 +20,7 @@ class CharacterImagePlaceholder extends StatelessWidget {
       height: height,
       width: width,
       foregroundDecoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
         gradient: LinearGradient(
           colors: [shadowColor.withOpacity(0.3), Colors.transparent],
           begin: Alignment.bottomCenter,

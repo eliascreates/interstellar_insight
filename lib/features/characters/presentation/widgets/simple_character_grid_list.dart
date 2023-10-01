@@ -7,37 +7,35 @@ import 'package:interstellar_insight/features/characters/presentation/widgets/si
 import '../bloc/characters_bloc.dart';
 
 class SimpleCharacterGridList extends StatelessWidget {
-  const SimpleCharacterGridList({super.key, required this.scrollController});
-  final ScrollController scrollController;
+  const SimpleCharacterGridList({super.key});
 
   @override
   Widget build(BuildContext context) {
     final characters =
         context.select((CharactersBloc bloc) => bloc.state.characters);
 
-    return RepaintBoundary(
-      child: SingleChildScrollView(
-        clipBehavior: Clip.none,
-        child: MasonryGridView.builder(
-          controller: scrollController,
-          gridDelegate: const SliverSimpleGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
+    return CustomScrollView(
+      slivers: [
+        SliverPadding(
+          padding: const EdgeInsets.all(10.0),
+          sliver: SliverMasonryGrid(
+            delegate: SliverChildBuilderDelegate(childCount: characters.length,
+                (context, index) {
+              final character = characters[index];
+              final cardSize = determineCardSize(character.name);
+              return SimpleCharacterCard(
+                character: character,
+                height: cardSize.size,
+              );
+            }),
+            gridDelegate: const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+            ),
+            mainAxisSpacing: 8,
+            crossAxisSpacing: 8,
           ),
-          shrinkWrap: true,
-          itemCount: characters.length,
-          mainAxisSpacing: 8,
-          crossAxisSpacing: 8,
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-          itemBuilder: (context, index) {
-            final character = characters[index];
-            final cardSize = determineCardSize(character.name);
-            return SimpleCharacterCard(
-              character: character,
-              height: cardSize.size,
-            );
-          },
         ),
-      ),
+      ],
     );
   }
 
