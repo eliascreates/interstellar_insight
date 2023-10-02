@@ -1,13 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:interstellar_insight/core/extension/character_status.dart';
-import 'package:interstellar_insight/core/shared/widgets/shared_widgets.dart';
 import '../../domain/domain.dart';
 import '../pages/characters_detail_page.dart';
 
 class SimpleCharacterTile extends StatelessWidget {
-  const SimpleCharacterTile(
-      {super.key, required this.character});
+  const SimpleCharacterTile({super.key, required this.character});
   final Character character;
 
   @override
@@ -18,7 +16,8 @@ class SimpleCharacterTile extends StatelessWidget {
         onTap: () => Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => CharactersDetailPage(character: character, widgetName: 'SimpleCharacterTile'),
+            builder: (context) => CharactersDetailPage(
+                character: character, widgetName: 'SimpleCharacterTile'),
           ),
         ),
         shape:
@@ -31,11 +30,13 @@ class SimpleCharacterTile extends StatelessWidget {
               transitionOnUserGestures: true,
               child: CachedNetworkImage(
                   imageUrl: character.imageUrl,
-                  placeholder: (context, url) => CharacterImagePlaceholder(
+                  placeholder: (context, url) => Container(
                         height: 60,
                         width: 60,
-                        shape: BoxShape.circle,
-                        color: character.cleanStatus.color.withOpacity(0.2),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: character.cleanStatus.color.withOpacity(0.2),
+                        ),
                       ),
                   imageBuilder: (context, imageProvider) {
                     return Container(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:interstellar_insight/features/characters/characters.dart';
+import 'package:interstellar_insight/features/splash/view/splash_page.dart';
 import 'features/home/home.dart';
 import 'service_locator.dart' as di;
 
@@ -53,7 +54,7 @@ class MyAppView extends StatelessWidget {
         seedColor: Colors.deepPurple,
       )),
       themeMode: ThemeMode.light,
-      home: const HomePage(),
+      home: const SplashPage(),
     );
   }
 }

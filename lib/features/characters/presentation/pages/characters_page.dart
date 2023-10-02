@@ -44,17 +44,50 @@ class _CharacterViewState extends State<CharacterView>
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    // final captionColor = theme.textTheme.bodyMedium?.color;
     return NestedScrollView(
       headerSliverBuilder: (context, innerBoxIsScrolled) {
         return [
-          const SliverAppBar(title: Text('Final Space')),
+          SliverAppBar(
+            titleSpacing: 20,
+            title: Text(
+              'Daily Spotlight',
+              style: theme.textTheme.headlineSmall
+                  ?.copyWith(fontWeight: FontWeight.w500),
+            ),
+            actions: [
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.settings, size: 30),
+              ),
+              const SizedBox(width: 10)
+            ],
+          ),
           const SliverToBoxAdapter(child: FeaturedCharacterList()),
+          SliverPadding(
+            padding: const EdgeInsets.only(left: 20, bottom: 20),
+            sliver: SliverToBoxAdapter(
+              child: Text(
+                'All Characters',
+                style: theme.textTheme.headlineSmall
+                    ?.copyWith(fontWeight: FontWeight.w500),
+              ),
+            ),
+          ),
           SliverAppBar(
             floating: true,
             pinned: true,
             snap: true,
             toolbarHeight: 0,
-            bottom: SimpleCharacterTabBar(tabController: _tabController),
+            bottom: TabBar(
+              controller: _tabController,
+              enableFeedback: true,
+              tabs: const [
+                Tab(icon: Icon(Icons.grid_on_rounded)),
+                Tab(icon: Icon(Icons.view_agenda_outlined)),
+              ],
+            ),
           ),
         ];
       },

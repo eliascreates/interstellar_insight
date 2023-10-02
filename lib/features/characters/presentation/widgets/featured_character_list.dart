@@ -43,7 +43,7 @@ class _FeaturedCharacterListState extends State<FeaturedCharacterList> {
 
     return Column(
       children: [
-        SizedBox(height: screenHeight * 0.05),
+        SizedBox(height: screenHeight * 0.03),
         Stack(
           children: [
             SizedBox(

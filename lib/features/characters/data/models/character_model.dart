@@ -30,8 +30,8 @@ class CharacterModel extends Equatable {
   factory CharacterModel.fromMap(Map<String, dynamic> map) {
     return CharacterModel(
       id: map['id'] as int? ?? 0,
-      name: map['name'] as String? ?? '',
-      status: map['status'] as String? ?? '',
+      name: map['name'] as String? ?? 'Unknown',
+      status: map['status'] as String? ?? 'Unknown',
       species: map['species'] as String? ?? '',
       gender: map['gender'] as String? ?? '',
       hair: map['hair'] as String? ?? '',

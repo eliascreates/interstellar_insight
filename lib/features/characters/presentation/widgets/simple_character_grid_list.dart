@@ -39,6 +39,8 @@ class SimpleCharacterGridList extends StatelessWidget {
     );
   }
 
+}
+
   CardSize determineCardSize(String name) {
     if (name.length < 5 && name != 'Viro') {
       return CardSize.large;
@@ -48,4 +50,3 @@ class SimpleCharacterGridList extends StatelessWidget {
       return CardSize.medium;
     }
   }
-}
