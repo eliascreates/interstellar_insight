@@ -45,41 +45,42 @@ class _CharacterViewState extends State<CharacterView>
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    // final captionColor = theme.textTheme.bodyMedium?.color;
+    final captionColor = theme.unselectedWidgetColor;
     return NestedScrollView(
       headerSliverBuilder: (context, innerBoxIsScrolled) {
         return [
           SliverAppBar(
+            backgroundColor: theme.canvasColor,
             titleSpacing: 20,
             title: Text(
               'Daily Spotlight',
               style: theme.textTheme.headlineSmall
-                  ?.copyWith(fontWeight: FontWeight.w500),
+                  ?.copyWith(fontWeight: FontWeight.w500, color: captionColor),
             ),
             actions: [
               IconButton(
                 onPressed: () {},
+                color: captionColor,
                 icon: const Icon(Icons.settings, size: 30),
               ),
               const SizedBox(width: 10)
             ],
           ),
           const SliverToBoxAdapter(child: FeaturedCharacterList()),
-          SliverPadding(
-            padding: const EdgeInsets.only(left: 20, bottom: 20),
-            sliver: SliverToBoxAdapter(
-              child: Text(
-                'All Characters',
-                style: theme.textTheme.headlineSmall
-                    ?.copyWith(fontWeight: FontWeight.w500),
-              ),
-            ),
-          ),
           SliverAppBar(
+            backgroundColor: theme.canvasColor,
             floating: true,
             pinned: true,
             snap: true,
-            toolbarHeight: 0,
+            titleSpacing: 20.0,
+            title: Text(
+              'All Characters',
+              style: theme.textTheme.headlineSmall?.copyWith(
+                fontWeight: FontWeight.w500,
+                color: captionColor,
+              ),
+            ),
+            // toolbarHeight: 0,
             bottom: TabBar(
               controller: _tabController,
               enableFeedback: true,

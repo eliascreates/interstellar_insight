@@ -49,10 +49,11 @@ class MyAppView extends StatelessWidget {
         useMaterial3: true,
       ),
       darkTheme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(
-        brightness: Brightness.dark,
-        seedColor: Colors.deepPurple,
-      )),
+        colorScheme: ColorScheme.fromSeed(
+          brightness: Brightness.dark,
+          seedColor: Colors.deepPurple,
+        ),
+      ),
       themeMode: ThemeMode.light,
       home: const SplashPage(),
     );

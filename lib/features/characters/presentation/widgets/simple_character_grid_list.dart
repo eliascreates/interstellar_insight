@@ -14,39 +14,32 @@ class SimpleCharacterGridList extends StatelessWidget {
     final characters =
         context.select((CharactersBloc bloc) => bloc.state.characters);
 
-    return CustomScrollView(
-      slivers: [
-        SliverPadding(
-          padding: const EdgeInsets.all(10.0),
-          sliver: SliverMasonryGrid(
-            delegate: SliverChildBuilderDelegate(childCount: characters.length,
-                (context, index) {
-              final character = characters[index];
-              final cardSize = determineCardSize(character.name);
-              return SimpleCharacterCard(
-                character: character,
-                height: cardSize.size,
-              );
-            }),
-            gridDelegate: const SliverSimpleGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-            ),
-            mainAxisSpacing: 8,
-            crossAxisSpacing: 8,
-          ),
-        ),
-      ],
+    return MasonryGridView.builder(
+      itemCount: characters.length,
+      itemBuilder: (context, index) {
+        final character = characters[index];
+        final cardSize = determineCardSize(character.name);
+        return SimpleCharacterCard(
+          character: character,
+          height: cardSize.size,
+        );
+      },
+      gridDelegate: const SliverSimpleGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+      ),
+      mainAxisSpacing: 8,
+      crossAxisSpacing: 8,
+      padding: const EdgeInsets.all(10.0),
     );
   }
-
 }
 
-  CardSize determineCardSize(String name) {
-    if (name.length < 5 && name != 'Viro') {
-      return CardSize.large;
-    } else if (name.length < 10 && name != 'Werthrent') {
-      return CardSize.small;
-    } else {
-      return CardSize.medium;
-    }
+CardSize determineCardSize(String name) {
+  if (name.length < 5 && name != 'Viro') {
+    return CardSize.large;
+  } else if (name.length < 10 && name != 'Werthrent') {
+    return CardSize.small;
+  } else {
+    return CardSize.medium;
   }
+}
