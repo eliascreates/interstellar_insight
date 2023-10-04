@@ -67,16 +67,3 @@ class MyAppView extends StatelessWidget {
     );
   }
 }
-
-
-    // final tabAppStarts = context.watch<HomeCubit>().state;
-
-    // if (tabAppStarts == HomeState.characters) {
-    //   openApp = context.select(
-    //     (CharactersBloc bloc) => bloc.state.characters.isNotEmpty,
-    //   );
-    // } else if (tabAppStarts == HomeState.episodes) {
-    //   context.select(
-    //     (EpisodesBloc bloc) => bloc.state.episodes.isNotEmpty,
-    //   );
-    // }

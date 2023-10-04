@@ -7,7 +7,9 @@ import 'episode_character_card.dart';
 
 class EpisodeCharacterList extends StatelessWidget {
   const EpisodeCharacterList({super.key, required this.episode});
+
   final Episode episode;
+
   @override
   Widget build(BuildContext context) {
     final featuredIds = episode.characters.map((character) {
@@ -19,17 +21,23 @@ class EpisodeCharacterList extends StatelessWidget {
     final characters = context.select(
       (CharactersBloc bloc) => bloc.state.characters,
     );
-    final featuredCharacters = featuredIds
-        .map(
-          (id) => characters.firstWhere((character) => character.id == id),
-        )
-        .toList();
+    
+    if (characters.isEmpty) {
+      return const SizedBox();
+    }
+
+    final featuredCharacters = featuredIds.map((id) {
+      return characters.firstWhere(
+        (character) => character.id == id,
+      );
+    }).toList();
 
     return ListView.separated(
       scrollDirection: Axis.horizontal,
       padding: const EdgeInsets.all(20),
       physics: const BouncingScrollPhysics(),
-      itemBuilder: (context, index) => EpisodeCharacterCard(featuredCharacters[index]),
+      itemBuilder: (context, index) =>
+          EpisodeCharacterCard(featuredCharacters[index]),
       separatorBuilder: (context, i) => const SizedBox(width: 20),
       itemCount: featuredCharacters.length,
     );
