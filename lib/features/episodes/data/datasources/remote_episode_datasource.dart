@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 
@@ -22,16 +23,19 @@ class RemoteEpisodeDataSourceImpl implements RemoteEpisodeDataSource {
     // TODO: implement getAllEpisodes
     try {
       final response = await client.get(Uri.parse(Endpoints.episodes));
-
       if (response.statusCode == 200) {
         final List<dynamic> data = jsonDecode(response.body);
+        log('We have the Data: $data');
 
         final episodes = data
             .map((episodeData) => EpisodeModel.fromMap(episodeData))
             .toList();
 
+        log('We have the EPISODES :-)');
         return episodes;
       } else {
+        log('WHOOPS, NO DATA FROM RESPONSE');
+
         throw ServerException();
       }
     } catch (e) {

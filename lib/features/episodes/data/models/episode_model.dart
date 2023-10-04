@@ -27,7 +27,7 @@ class EpisodeModel extends Equatable {
       director: map['director'] as String? ?? 'Unknown',
       writer: map['writer'] as String? ?? 'Unknown',
       characters: List<String>.from(
-        (map['characters'] as List<String>?) ?? [],
+        (map['characters'] as List<dynamic>?) ?? [],
       ),
       imageUrl: map['img_url'] as String? ?? '',
     );

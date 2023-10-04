@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 
 import 'package:interstellar_insight/core/errors/failure.dart';
@@ -15,13 +17,18 @@ class EpisodeRepositoryImpl implements EpisodeRepository {
   Future<Either<Failure, List<Episode>>> getAllEpisodes() async {
     // TODO: implement getAllEpisodes
     try {
+        log('WE ARE IN THE EP REPOSITORY');
+
       final episodes = await remoteDataSource.getAllEpisodes();
 
+        log('HUH, WE GOT PAST REPO EPS???');
       final episodesEntity =
           episodes.map((character) => toEntity(character)).toList();
+        log('IT IS ENTITY FAULT???');
 
       return Right(episodesEntity);
     } catch (e) {
+        log('YEAH YOU GOT A REAL PROBLEM HERE, REPO EP');
       return const Left(
         ServerFailure(
           message: 'Failed to fetch all Episodes, please try again later.',

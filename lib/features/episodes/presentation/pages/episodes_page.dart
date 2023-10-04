@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:interstellar_insight/features/episodes/presentation/widgets/episode_list.dart';
+import '../widgets/widgets.dart';
 
 class EpisodesPage extends StatelessWidget {
   const EpisodesPage({super.key});

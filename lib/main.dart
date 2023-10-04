@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:interstellar_insight/features/characters/characters.dart';
+import 'package:interstellar_insight/features/episodes/presentation/bloc/episodes_bloc.dart';
 import 'package:interstellar_insight/features/splash/view/splash_page.dart';
+import 'features/episodes/domain/domain.dart';
 import 'features/home/home.dart';
 import 'service_locator.dart' as di;
 
@@ -23,6 +25,12 @@ class MyApp extends StatelessWidget {
             getAllCharacters: di.sl<GetAllCharacters>(),
             getCharacterById: di.sl<GetCharacterById>(),
           )..add(const CharactersFetchedAll()),
+        ),
+        BlocProvider(
+          create: (context) => EpisodesBloc(
+            getAllEpisodes: di.sl<GetAllEpisodes>(),
+            getEpisodeById: di.sl<GetEpisodeById>(),
+          )..add(const EpisodesFetchedAll()),
         ),
         BlocProvider(
           create: (context) => HomeCubit(),
@@ -59,3 +67,16 @@ class MyAppView extends StatelessWidget {
     );
   }
 }
+
+
+    // final tabAppStarts = context.watch<HomeCubit>().state;
+
+    // if (tabAppStarts == HomeState.characters) {
+    //   openApp = context.select(
+    //     (CharactersBloc bloc) => bloc.state.characters.isNotEmpty,
+    //   );
+    // } else if (tabAppStarts == HomeState.episodes) {
+    //   context.select(
+    //     (EpisodesBloc bloc) => bloc.state.episodes.isNotEmpty,
+    //   );
+    // }

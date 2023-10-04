@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:interstellar_insight/config/routes/custom_page_route.dart';
 import 'package:interstellar_insight/features/episodes/presentation/pages/episode_detail_page.dart';
@@ -11,6 +12,8 @@ class EpisodeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final shadowColor = Theme.of(context).shadowColor;
+
     return GestureDetector(
       onTap: () => Navigator.of(context).push(
         FadePageRoute(
@@ -23,7 +26,7 @@ class EpisodeCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(15.0),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.3),
+              color: shadowColor.withOpacity(0.3),
               spreadRadius: -5,
               blurRadius: 20,
               offset: const Offset(0, 15),
@@ -35,25 +38,51 @@ class EpisodeCard extends StatelessWidget {
           children: [
             Hero(
               tag: episode.imageUrl,
-              child: Container(
-                height: 180,
-                foregroundDecoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [Colors.black.withOpacity(0.3), Colors.transparent],
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.center,
-                  ),
-                ),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15.0),
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    colorFilter: ColorFilter.mode(
-                        Colors.black.withOpacity(0.15), BlendMode.darken),
-                    image: AssetImage(episode.imageUrl),
-                  ),
-                ),
-              ),
+              child: CachedNetworkImage(
+                  imageUrl: episode.imageUrl,
+                  placeholder: (context, url) => Container(
+                        height: 180,
+                        foregroundDecoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              Colors.black.withOpacity(0.3),
+                              Colors.transparent
+                            ],
+                            begin: Alignment.bottomCenter,
+                            end: Alignment.center,
+                          ),
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                      ),
+                  imageBuilder: (context, imageProvider) {
+                    return Container(
+                      height: 180,
+                      foregroundDecoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Colors.black.withOpacity(0.3),
+                            Colors.transparent
+                          ],
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.center,
+                        ),
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15.0),
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          colorFilter: ColorFilter.mode(
+                            Colors.black.withOpacity(0.15),
+                            BlendMode.darken,
+                          ),
+                          image: imageProvider,
+                        ),
+                      ),
+                    );
+                  }),
             ),
             Align(
               alignment: Alignment.bottomLeft,

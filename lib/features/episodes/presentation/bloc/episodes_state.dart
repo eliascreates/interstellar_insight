@@ -31,4 +31,7 @@ class EpisodesState extends Equatable {
         status,
         errorMessage,
       ];
+
+  @override
+  String toString() => 'EpisodesState(episodes: ${episodes.length}, status: $status, $errorMessage)';
 }
