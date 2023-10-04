@@ -6,7 +6,7 @@ import 'package:interstellar_insight/features/characters/domain/repositories/cha
 import '../entities/character.dart';
 
 class GetAllCharacters implements UseCase<List<Character>, NoParams> {
-  GetAllCharacters(this.repository);
+  const GetAllCharacters(this.repository);
 
   final CharacterRepository repository;
 

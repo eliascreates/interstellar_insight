@@ -34,32 +34,6 @@ class Episode extends Equatable {
         characters,
         imageUrl,
       ];
-
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'id': id,
-      'name': name,
-      'air_date': releaseDate,
-      'director': director,
-      'writer': writer,
-      'characters': characters,
-      'img_url': imageUrl,
-    };
-  }
-
-  factory Episode.fromMap(Map<String, dynamic> map) {
-    return Episode(
-      id: map['id'] as int,
-      name: map['name'] as String,
-      releaseDate: map['air_date'] as String,
-      director: map['director'] as String,
-      writer: map['writer'] as String,
-      characters: List<String>.from(
-        (map['characters'] as List<String>),
-      ),
-      imageUrl: map['img_url'] as String,
-    );
-  }
 }
 
 const List<Episode> episodes = [

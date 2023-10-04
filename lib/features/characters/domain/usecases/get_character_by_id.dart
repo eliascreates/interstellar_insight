@@ -7,7 +7,7 @@ import 'package:interstellar_insight/features/characters/domain/repositories/cha
 import '../entities/character.dart';
 
 class GetCharacterById extends UseCase<Character, CharacterByIdParams> {
-  GetCharacterById(this.repository);
+  const GetCharacterById(this.repository);
 
   final CharacterRepository repository;
 
