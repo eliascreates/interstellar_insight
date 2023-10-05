@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class Location extends Equatable {
+class LocationModel extends Equatable {
   final int id;
   final String name;
   final String type;
@@ -8,7 +8,7 @@ class Location extends Equatable {
   final List<String> notableResidents;
   final String imageUrl;
 
-  const Location({
+  const LocationModel({
     required this.id,
     required this.name,
     required this.type,
@@ -17,37 +17,8 @@ class Location extends Equatable {
     required this.imageUrl,
   });
 
-  Location copyWith({
-    int? id,
-    String? name,
-    String? type,
-    List<String>? inhabitants,
-    List<String>? notableResidents,
-    String? imageUrl,
-  }) {
-    return Location(
-      id: id ?? this.id,
-      name: name ?? this.name,
-      type: type ?? this.type,
-      inhabitants: inhabitants ?? this.inhabitants,
-      notableResidents: notableResidents ?? this.notableResidents,
-      imageUrl: imageUrl ?? this.imageUrl,
-    );
-  }
-
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'id': id,
-      'name': name,
-      'type': type,
-      'inhabitants': inhabitants,
-      'notable_residents': notableResidents,
-      'img_url': imageUrl,
-    };
-  }
-
-  factory Location.fromMap(Map<String, dynamic> map) {
-    return Location(
+  factory LocationModel.fromMap(Map<String, dynamic> map) {
+    return LocationModel(
       id: map['id'].toInt() as int? ?? 0,
       name: map['name'] as String? ?? 'Unknown',
       type: map['type'] as String? ?? 'Unidentified',
@@ -63,7 +34,7 @@ class Location extends Equatable {
 
   @override
   String toString() {
-    return 'Location(id: $id, name: $name, type: $type, inhabitants: $inhabitants, notable_residents: $notableResidents, img_url: $imageUrl)';
+    return 'LocationModel(id: $id, name: $name, type: $type, inhabitants: $inhabitants, notable_residents: $notableResidents, img_url: $imageUrl)';
   }
 
   @override
