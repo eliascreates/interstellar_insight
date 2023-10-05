@@ -21,28 +21,23 @@ class CharacterRemoteDataSourceImpl implements CharacterRemoteDataSource {
   Future<List<CharacterModel>> getAllCharacters() async {
     try {
       final response = await client.get(Uri.parse(Endpoints.characters));
-      // debugPrint('we are still okay');
 
       if (response.statusCode == 200) {
-        // debugPrint('we are good. we have the data');
         final List<dynamic> data = jsonDecode(response.body);
-        // log('XXXhere is the List data: $data');
+        // log('We got characters data: $data');
 
         List<CharacterModel> characters = data.map((characterData) {
           return CharacterModel.fromMap(characterData);
         }).toList();
 
-        // log('WE HAVE CHARACTERS - SIZE : ${characters.length}');
         return characters;
       } else {
-        // debugPrint('looks like we dont have the data');
         throw ServerException(
           message:
               'Failed to load characters. Status code: ${response.statusCode}',
         );
       }
     } catch (e) {
-      // debugPrint('An error occurred: $e');
       throw ServerException(message: 'Failed to load characters. Error: $e');
     }
   }

@@ -1,9 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:interstellar_insight/features/episodes/presentation/widgets/episode_card.dart';
 
 import '../bloc/episodes_bloc.dart';
+import 'episode_card.dart';
 
 class EpisodeList extends StatelessWidget {
   const EpisodeList({super.key});

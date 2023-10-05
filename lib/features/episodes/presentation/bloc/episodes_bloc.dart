@@ -1,7 +1,9 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:interstellar_insight/core/usecase/usecase.dart';
-import 'package:interstellar_insight/features/episodes/episodes.dart';
+
+import '../../domain/domain.dart';
 
 part 'episodes_event.dart';
 part 'episodes_state.dart';
@@ -20,7 +22,6 @@ class EpisodesBloc extends Bloc<EpisodesEvent, EpisodesState> {
 
   Future<void> _onEpisodesFetchedAll(
       EpisodesFetchedAll event, Emitter<EpisodesState> emit) async {
-    //TODO: write EpisodesFetchedAll implementation
     emit(state.copyWith(status: EpisodeStatus.loading));
     final result = await getAllEpisodes(const NoParams());
 
@@ -41,7 +42,6 @@ class EpisodesBloc extends Bloc<EpisodesEvent, EpisodesState> {
 
   Future<void> _onEpisodesFetchedById(
       EpisodesFetchedById event, Emitter<EpisodesState> emit) async {
-    //TODO: write EpisodesFetchedById implementation
     emit(state.copyWith(status: EpisodeStatus.loading));
     final result = await getEpisodeById(EpisodeByIdParams(id: event.id));
 

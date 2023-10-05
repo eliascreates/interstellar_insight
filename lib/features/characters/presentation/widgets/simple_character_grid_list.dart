@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+
 import 'package:interstellar_insight/core/extension/extension.dart';
-import 'package:interstellar_insight/features/characters/presentation/widgets/simple_character_card.dart';
 
 import '../bloc/characters_bloc.dart';
+import 'simple_character_card.dart';
 
 class SimpleCharacterGridList extends StatelessWidget {
   const SimpleCharacterGridList({super.key});

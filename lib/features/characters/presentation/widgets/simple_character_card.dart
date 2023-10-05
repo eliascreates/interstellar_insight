@@ -1,10 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+
 import 'package:interstellar_insight/config/routes/custom_page_route.dart';
 import 'package:interstellar_insight/core/extension/character_status.dart';
 import 'package:interstellar_insight/core/shared/widgets/shared_widgets.dart';
-import 'package:interstellar_insight/features/characters/presentation/pages/characters_detail_page.dart';
+
 import '../../domain/domain.dart';
+import '../pages/characters_detail_page.dart';
 
 class SimpleCharacterCard extends StatelessWidget {
   const SimpleCharacterCard({

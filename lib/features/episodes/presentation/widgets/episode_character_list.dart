@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../characters/characters.dart';
 import '../../domain/domain.dart';
-
 import 'episode_character_card.dart';
 
 class EpisodeCharacterList extends StatelessWidget {

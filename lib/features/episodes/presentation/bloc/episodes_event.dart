@@ -15,4 +15,7 @@ class EpisodesFetchedById extends EpisodesEvent {
   final String id;
 
   const EpisodesFetchedById({required this.id});
+
+  @override
+  List<Object> get props => [id];
 }

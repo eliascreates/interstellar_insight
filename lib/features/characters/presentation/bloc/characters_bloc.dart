@@ -1,8 +1,10 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:equatable/equatable.dart';
+
 import 'package:interstellar_insight/core/usecase/usecase.dart';
-import 'package:interstellar_insight/features/characters/characters.dart';
+
+import '../../domain/domain.dart';
 
 part 'characters_event.dart';
 part 'characters_state.dart';

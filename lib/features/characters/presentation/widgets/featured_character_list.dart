@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:interstellar_insight/features/characters/presentation/widgets/featured_character_card.dart';
 
 import '../bloc/characters_bloc.dart';
 import '../cubit/featured_character_list_cubit_cubit.dart';
 import 'dot_indicators.dart';
+import 'featured_character_card.dart';
 
 class FeaturedCharacterList extends StatefulWidget {
   const FeaturedCharacterList({super.key});

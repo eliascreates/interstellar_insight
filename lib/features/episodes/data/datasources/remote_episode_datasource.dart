@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 
@@ -20,21 +19,18 @@ class RemoteEpisodeDataSourceImpl implements RemoteEpisodeDataSource {
 
   @override
   Future<List<EpisodeModel>> getAllEpisodes() async {
-    // TODO: implement getAllEpisodes
     try {
       final response = await client.get(Uri.parse(Endpoints.episodes));
       if (response.statusCode == 200) {
         final List<dynamic> data = jsonDecode(response.body);
-        log('We have the Data: $data');
+        // log('We got episodes data: $data');
 
         final episodes = data
             .map((episodeData) => EpisodeModel.fromMap(episodeData))
             .toList();
 
-        log('We have the EPISODES :-)');
         return episodes;
       } else {
-        log('WHOOPS, NO DATA FROM RESPONSE');
 
         throw ServerException();
       }
@@ -45,7 +41,6 @@ class RemoteEpisodeDataSourceImpl implements RemoteEpisodeDataSource {
 
   @override
   Future<EpisodeModel> getEpisodeById(String id) async {
-    // TODO: implement getEpisodeById
     try {
       final response = await client.get(Uri.parse('${Endpoints.episodes}/$id'));
 

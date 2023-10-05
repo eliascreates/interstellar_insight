@@ -1,10 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+
 import 'package:interstellar_insight/core/errors/failure.dart';
 import 'package:interstellar_insight/core/usecase/usecase.dart';
-import 'package:interstellar_insight/features/characters/domain/repositories/character_repository.dart';
 
 import '../entities/character.dart';
+import '../repositories/character_repository.dart';
 
 class GetCharacterById extends UseCase<Character, CharacterByIdParams> {
   const GetCharacterById(this.repository);

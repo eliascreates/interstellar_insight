@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 
 import 'package:interstellar_insight/core/errors/failure.dart';
-import 'package:interstellar_insight/features/characters/domain/domain.dart';
 
+import '../../domain/domain.dart';
 import '../datasources/remote_character_datasource.dart';
 import '../mapper/character_mapper.dart';
 
@@ -30,7 +30,6 @@ class CharacterRepositoryImpl implements CharacterRepository {
 
   @override
   Future<Either<Failure, Character>> getCharacterById(int id) async {
-    // TODO: implement getCharacterById
     try {
       final character = await remoteDataSource.getCharacterById(id);
       final characterEntity = toEntity(character);

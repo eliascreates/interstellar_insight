@@ -1,9 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:interstellar_insight/config/routes/custom_page_route.dart';
-import 'package:interstellar_insight/features/episodes/presentation/pages/episode_detail_page.dart';
 
-import '../../domain/entities/episode.dart';
+import 'package:interstellar_insight/config/routes/custom_page_route.dart';
+
+import '../../domain/domain.dart';
+import '../pages/episode_detail_page.dart';
 
 class EpisodeCard extends StatelessWidget {
   final Episode episode;

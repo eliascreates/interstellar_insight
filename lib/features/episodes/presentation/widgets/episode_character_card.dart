@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:interstellar_insight/features/characters/characters.dart';
+
+import 'package:interstellar_insight/features/characters/characters.dart' show Character;
 
 class EpisodeCharacterCard extends StatelessWidget {
   final Character character;
