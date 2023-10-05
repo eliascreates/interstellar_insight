@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:interstellar_insight/features/characters/characters.dart';
 import 'package:interstellar_insight/features/episodes/episodes.dart';
 import 'package:interstellar_insight/features/home/home.dart';
+import 'package:interstellar_insight/features/locations/presentation/bloc/locations_bloc.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
@@ -19,10 +20,13 @@ class SplashPage extends StatelessWidget {
           (CharactersBloc bloc) => bloc.state.characters.isNotEmpty,
         );
       case HomeState.episodes:
+        openApp = context.select(
+          (EpisodesBloc bloc) => bloc.state.episodes.isNotEmpty,
+        );
       case HomeState.locations:
       case HomeState.quotes:
         openApp = context.select(
-          (EpisodesBloc bloc) => bloc.state.episodes.isNotEmpty,
+          (LocationsBloc bloc) => bloc.state.locations.isNotEmpty,
         );
     }
 
