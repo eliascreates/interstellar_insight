@@ -1,0 +1,1 @@
+export './pages/quotes_page.dart';

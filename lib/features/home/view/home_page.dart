@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:interstellar_insight/features/characters/characters.dart';
 import 'package:interstellar_insight/features/episodes/episodes.dart';
 import 'package:interstellar_insight/features/locations/locations.dart';
+import 'package:interstellar_insight/features/quotes/presentation/pages/quotes_page.dart';
 
 import '../cubit/home_cubit.dart';
 import '../widgets/gnavigation_bar.dart';
@@ -35,12 +36,7 @@ class _HomeBody extends StatelessWidget {
       case HomeState.locations:
         return const LocationsPage();
       case HomeState.quotes:
-        return Center(
-          child: Text(
-            'Quotes Page',
-            style: Theme.of(context).textTheme.headlineMedium,
-          ),
-        );
+        return const QuotesPage();
     }
   }
 }
