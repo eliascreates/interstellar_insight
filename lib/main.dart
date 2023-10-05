@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:interstellar_insight/features/locations/presentation/bloc/locations_bloc.dart';
 
 import 'features/characters/characters.dart';
 import 'features/episodes/episodes.dart';
