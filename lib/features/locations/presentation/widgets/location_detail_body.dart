@@ -18,38 +18,50 @@ class LocationDetailBody extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          if (location.inhabitants.isNotEmpty)
+            Text(
+              'Inhabitants',
+              style: theme.textTheme.headlineSmall
+                  ?.copyWith(fontWeight: FontWeight.bold),
+            ),
+          const SizedBox(height: 10),
           Wrap(
             spacing: 8.0,
             direction: Axis.horizontal,
             crossAxisAlignment: WrapCrossAlignment.end,
-            children: [
-              LocationDetailTag(tagName: "Director", tagValue: location.name),
-              LocationDetailTag(tagName: "Writer", tagValue: location.type),
-              LocationDetailTag(
-                tagName: "Release Date",
-                tagValue: location.type,
-              ),
-            ],
-          ),
-          const SizedBox(height: 10),
-          RichText(
-            text: TextSpan(
-              style: theme.textTheme.bodyMedium,
-              children: [
-                const TextSpan(text: "In this episode  "),
-                TextSpan(
-                  text: location.inhabitants.length.toString(),
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                  ),
-                ),
-                const TextSpan(
-                  text: "  characters received the most screen time.",
-                ),
-              ],
+            children: List.generate(
+              location.inhabitants.length,
+              (index) =>
+                  LocationDetailTag(inhabitant: location.inhabitants[index]),
             ),
           ),
+          const SizedBox(height: 10),
+          location.notableResidents.isEmpty
+              ? const Text("No one lives here")
+              : RichText(
+                  text: TextSpan(
+                    style: theme.textTheme.bodyMedium,
+                    children: [
+                      TextSpan(
+                        text: location.notableResidents.length == 1
+                            ? "There is only "
+                            : "There are ",
+                      ),
+                      TextSpan(
+                        text: location.notableResidents.length.toString(),
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),
+                      TextSpan(
+                        text: location.notableResidents.length == 1
+                            ? "  well known resident."
+                            : "  well known residents.",
+                      ),
+                    ],
+                  ),
+                ),
           const SizedBox(height: 10),
           const Divider(thickness: 2),
         ],

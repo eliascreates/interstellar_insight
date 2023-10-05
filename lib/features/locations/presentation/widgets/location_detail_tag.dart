@@ -1,14 +1,9 @@
 part of 'location_detail_body.dart';
 
 class LocationDetailTag extends StatelessWidget {
-  const LocationDetailTag({
-    super.key,
-    required this.tagName,
-    required this.tagValue,
-  });
+  const LocationDetailTag({super.key, required this.inhabitant});
 
-  final String tagName;
-  final String tagValue;
+  final String inhabitant;
 
   @override
   Widget build(BuildContext context) {
@@ -29,16 +24,11 @@ class LocationDetailTag extends StatelessWidget {
           )
         ],
       ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            "$tagName: ",
-            style: theme.textTheme.bodyLarge
-                ?.copyWith(fontWeight: FontWeight.bold),
-          ),
-          Text(tagValue),
-        ],
+      child: Text(
+        inhabitant,
+        style: theme.textTheme.bodyLarge?.copyWith(
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }

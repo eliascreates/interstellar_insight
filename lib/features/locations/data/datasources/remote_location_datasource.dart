@@ -18,7 +18,6 @@ class RemoteLocationDatasourceImpl implements RemoteLocationDatasource {
 
   @override
   Future<List<LocationModel>> getAllLocations() async {
-    // TODO: implement getAllLocations
     try {
       final response = await client.get(Uri.parse(Endpoints.locations));
 
@@ -44,7 +43,6 @@ class RemoteLocationDatasourceImpl implements RemoteLocationDatasource {
 
   @override
   Future<LocationModel> getLocationById(String id) async {
-    // TODO: implement getLocationById
     try {
       final response = await client.get(
         Uri.parse('${Endpoints.locations}/$id'),

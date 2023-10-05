@@ -1,9 +1,9 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:interstellar_insight/core/usecase/usecase.dart';
-import 'package:interstellar_insight/features/locations/domain/entities/location.dart';
-import 'package:interstellar_insight/features/locations/domain/usecases/get_all_locations.dart';
-import 'package:interstellar_insight/features/locations/domain/usecases/get_location_by_id.dart';
+
+import '../../domain/domain.dart';
 
 part 'locations_event.dart';
 part 'locations_state.dart';
@@ -24,7 +24,6 @@ class LocationsBloc extends Bloc<LocationsEvent, LocationsState> {
     LocationsFetchedAll event,
     Emitter<LocationsState> emit,
   ) async {
-    // TODO: implement event handler
     emit(state.copyWith(status: LocationStatus.loading));
 
     final result = await getAllLocations(const NoParams());
@@ -48,7 +47,6 @@ class LocationsBloc extends Bloc<LocationsEvent, LocationsState> {
     LocationsFetchedById event,
     Emitter<LocationsState> emit,
   ) async {
-    // TODO: implement event handler
     final result = await getLocationById(LocationByIdParams(id: event.id));
 
     emit(

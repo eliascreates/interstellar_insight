@@ -12,7 +12,6 @@ class LocationRepositoryImpl implements LocationRepository {
 
   @override
   Future<Either<Failure, List<Location>>> getAllLocations() async {
-    // TODO: implement getAllLocations
     try {
       final locations = await remoteDatasource.getAllLocations();
       final locationsEntity =
@@ -30,7 +29,6 @@ class LocationRepositoryImpl implements LocationRepository {
 
   @override
   Future<Either<Failure, Location>> getLocationById(String id) async {
-    // TODO: implement getLocationById
     try {
       final location = await remoteDatasource.getLocationById(id);
 

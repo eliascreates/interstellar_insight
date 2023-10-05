@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:interstellar_insight/features/locations/presentation/widgets/location_inhabitant_list.dart';
 
 import '../../domain/domain.dart';
 import '../widgets/widgets.dart';
@@ -32,16 +31,17 @@ class LocationDetailPage extends StatelessWidget {
               LocationDetailBody(location: location),
             ]),
           ),
-          SliverPadding(
-            padding: const EdgeInsets.only(left: 20),
-            sliver: SliverToBoxAdapter(
-              child: Text(
-                'Featured Characters',
-                style: theme.textTheme.headlineSmall
-                    ?.copyWith(fontWeight: FontWeight.bold),
+          if (location.notableResidents.isNotEmpty)
+            SliverPadding(
+              padding: const EdgeInsets.only(left: 20),
+              sliver: SliverToBoxAdapter(
+                child: Text(
+                  'Notable Residents',
+                  style: theme.textTheme.headlineSmall
+                      ?.copyWith(fontWeight: FontWeight.bold),
+                ),
               ),
             ),
-          ),
           SliverToBoxAdapter(
             child: SizedBox(
               height: 200,
