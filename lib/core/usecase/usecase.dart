@@ -4,6 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:interstellar_insight/core/errors/failure.dart';
 
 abstract class UseCase<Type, Params> {
+  const UseCase();
   Future<Either<Failure, Type>> call(Params params);
 }
 

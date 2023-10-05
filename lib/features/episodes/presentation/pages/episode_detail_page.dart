@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:interstellar_insight/features/episodes/domain/entities/episode.dart';
 
+import '../../domain/domain.dart';
 import '../widgets/widgets.dart';
 
 class EpisodeDetailPage extends StatelessWidget {
@@ -16,10 +16,13 @@ class EpisodeDetailPage extends StatelessWidget {
         slivers: [
           SliverAppBar.medium(
             iconTheme: const IconThemeData(size: 30),
-            title: Text(
-              episode.name,
-              style: theme.textTheme.headlineSmall
-                  ?.copyWith(fontWeight: FontWeight.bold),
+            title: FittedBox(
+              child: Text(
+                episode.name,
+                style: theme.textTheme.headlineSmall?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
           ),
           SliverList(
@@ -38,10 +41,10 @@ class EpisodeDetailPage extends StatelessWidget {
               ),
             ),
           ),
-          const SliverToBoxAdapter(
+          SliverToBoxAdapter(
             child: SizedBox(
               height: 200,
-              child: EpisodeCharacterList(),
+              child: EpisodeCharacterList(episode: episode),
             ),
           )
         ],

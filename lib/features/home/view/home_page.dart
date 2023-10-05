@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:interstellar_insight/features/characters/presentation/pages/characters_page.dart';
-import 'package:interstellar_insight/features/episodes/presentation/pages/episodes_page.dart';
+import 'package:interstellar_insight/features/characters/characters.dart';
+import 'package:interstellar_insight/features/episodes/episodes.dart';
+import 'package:interstellar_insight/features/locations/locations.dart';
 
 import '../cubit/home_cubit.dart';
 import '../widgets/gnavigation_bar.dart';
@@ -32,12 +33,7 @@ class _HomeBody extends StatelessWidget {
       case HomeState.episodes:
         return const EpisodesPage();
       case HomeState.locations:
-        return Center(
-          child: Text(
-            'Locations Page',
-            style: Theme.of(context).textTheme.headlineLarge,
-          ),
-        );
+        return const LocationsPage();
       case HomeState.quotes:
         return Center(
           child: Text(

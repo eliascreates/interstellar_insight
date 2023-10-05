@@ -1,7 +1,5 @@
 import 'dart:convert';
-import 'dart:developer';
 
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:interstellar_insight/core/errors/exception.dart';
@@ -21,38 +19,26 @@ class CharacterRemoteDataSourceImpl implements CharacterRemoteDataSource {
 
   @override
   Future<List<CharacterModel>> getAllCharacters() async {
-    debugPrint('now we are talking');
-    final response = await client.get(Uri.parse(Endpoints.characters));
-    debugPrint('we are still okay');
+    try {
+      final response = await client.get(Uri.parse(Endpoints.characters));
 
-    if (response.statusCode == 200) {
-      debugPrint('we are good. we have the data');
-      final List<dynamic> data = jsonDecode(response.body);
-      log('XXXhere is the List data: $data');
-      List<CharacterModel> characters = [];
-      for (var characterData in data) {
-        final map = {
-          'id': characterData['id'],
-          'name': characterData['name'],
-          'status': characterData['status'],
-          'species': characterData['species'],
-          'gender': characterData['gender'],
-          'hair': characterData['hair'],
-          'origin': characterData['origin'],
-          'img_url': characterData['img_url'],
-          'alias': characterData['alias'],
-          'abilities': characterData['abilities'],
-        };
-        characters.add(CharacterModel.fromMap(map));
-      }
+      if (response.statusCode == 200) {
+        final List<dynamic> data = jsonDecode(response.body);
+        // log('We got characters data: $data');
 
-      log('WE HAVE CHARACTERS - SIZE : ${characters.length}');
-      return characters;
-    } else {
-      debugPrint('looks like we dont have the data');
-      throw ServerException(
+        List<CharacterModel> characters = data.map((characterData) {
+          return CharacterModel.fromMap(characterData);
+        }).toList();
+
+        return characters;
+      } else {
+        throw ServerException(
           message:
-              'Failed to load characters. Status code: ${response.statusCode}');
+              'Failed to load characters. Status code: ${response.statusCode}',
+        );
+      }
+    } catch (e) {
+      throw ServerException(message: 'Failed to load characters. Error: $e');
     }
   }
 

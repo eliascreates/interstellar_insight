@@ -1,14 +1,16 @@
-
 import 'package:flutter/material.dart';
-import 'package:interstellar_insight/features/episodes/presentation/widgets/episode_card.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../domain/entities/episode.dart';
+import '../bloc/episodes_bloc.dart';
+import 'episode_card.dart';
 
 class EpisodeList extends StatelessWidget {
   const EpisodeList({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final episodes = context.select((EpisodesBloc bloc) => bloc.state.episodes);
+
     return ListView.separated(
       physics: const BouncingScrollPhysics(),
       itemCount: episodes.length,

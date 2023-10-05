@@ -1,57 +1,63 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../domain/entities/episode.dart';
+import 'package:interstellar_insight/features/characters/characters.dart' show Character;
 
 class EpisodeCharacterCard extends StatelessWidget {
-  final Episode episode;
+  final Character character;
 
-  const EpisodeCharacterCard(this.episode, {super.key});
+  const EpisodeCharacterCard(this.character, {super.key});
 
   @override
   Widget build(BuildContext context) {
     final shadowColor = Theme.of(context).shadowColor;
 
-    return Container(
-      width: 130,
-      height: 150,
-      alignment: Alignment.bottomLeft,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        boxShadow: [
-          BoxShadow(
-            color: shadowColor.withOpacity(0.3),
-            spreadRadius: 1,
-            blurRadius: 5,
-            offset: const Offset(1, 5),
+    return CachedNetworkImage(
+      imageUrl: character.imageUrl,
+      imageBuilder: (context, imageProvider) {
+        return Container(
+          width: 130,
+          height: 150,
+          alignment: Alignment.bottomLeft,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            boxShadow: [
+              BoxShadow(
+                color: shadowColor.withOpacity(0.3),
+                spreadRadius: 1,
+                blurRadius: 5,
+                offset: const Offset(1, 5),
+              ),
+            ],
+            image: DecorationImage(
+              image: imageProvider,
+              fit: BoxFit.cover,
+            ),
           ),
-        ],
-        image: DecorationImage(
-          image: AssetImage(episode.imageUrl),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Container(
-        alignment: Alignment.bottomLeft,
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          gradient: LinearGradient(
-            colors: [shadowColor.withOpacity(0.3), Colors.transparent],
-            begin: Alignment.bottomCenter,
-            end: Alignment.center,
+          child: Container(
+            alignment: Alignment.bottomLeft,
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              gradient: LinearGradient(
+                colors: [shadowColor.withOpacity(0.3), Colors.transparent],
+                begin: Alignment.bottomCenter,
+                end: Alignment.center,
+              ),
+            ),
+            child: Text(
+              character.firstName, 
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
+              style: const TextStyle(
+                fontSize: 14,
+                color: Colors.white,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
           ),
-        ),
-        child: const Text(
-          "The Queen of Ventrexia",
-          overflow: TextOverflow.ellipsis,
-          maxLines: 2,
-          style: TextStyle(
-            fontSize: 14,
-            color: Colors.white,
-            fontWeight: FontWeight.w800,
-          ),
-        ),
-      ),
+        );
+      }
     );
   }
 }

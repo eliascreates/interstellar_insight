@@ -1,12 +1,13 @@
 import 'package:dartz/dartz.dart';
+
 import 'package:interstellar_insight/core/errors/failure.dart';
 import 'package:interstellar_insight/core/usecase/usecase.dart';
-import 'package:interstellar_insight/features/characters/domain/repositories/character_repository.dart';
 
 import '../entities/character.dart';
+import '../repositories/character_repository.dart';
 
 class GetAllCharacters implements UseCase<List<Character>, NoParams> {
-  GetAllCharacters(this.repository);
+  const GetAllCharacters(this.repository);
 
   final CharacterRepository repository;
 

@@ -1,16 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:interstellar_insight/features/characters/presentation/bloc/characters_bloc.dart';
+import 'package:interstellar_insight/features/characters/characters.dart';
+import 'package:interstellar_insight/features/episodes/episodes.dart';
 import 'package:interstellar_insight/features/home/home.dart';
+import 'package:interstellar_insight/features/locations/presentation/bloc/locations_bloc.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final openApp = context.select(
-      (CharactersBloc bloc) => bloc.state.characters.isNotEmpty,
-    );
+    bool openApp = true;
+
+    final tabAppStarts = context.watch<HomeCubit>().state;
+
+    switch (tabAppStarts) {
+      case HomeState.characters:
+        openApp = context.select(
+          (CharactersBloc bloc) => bloc.state.characters.isNotEmpty,
+        );
+      case HomeState.episodes:
+        openApp = context.select(
+          (EpisodesBloc bloc) => bloc.state.episodes.isNotEmpty,
+        );
+      case HomeState.locations:
+      case HomeState.quotes:
+        openApp = context.select(
+          (LocationsBloc bloc) => bloc.state.locations.isNotEmpty,
+        );
+    }
 
     if (openApp) {
       Future.delayed(Duration.zero, () {

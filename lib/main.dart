@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:interstellar_insight/features/characters/characters.dart';
-import 'package:interstellar_insight/features/splash/view/splash_page.dart';
+
+import 'features/characters/characters.dart';
+import 'features/episodes/episodes.dart';
 import 'features/home/home.dart';
+import 'features/locations/locations.dart';
+import 'features/splash/splash.dart';
 import 'service_locator.dart' as di;
 
 Future<void> main() async {
@@ -23,6 +26,18 @@ class MyApp extends StatelessWidget {
             getAllCharacters: di.sl<GetAllCharacters>(),
             getCharacterById: di.sl<GetCharacterById>(),
           )..add(const CharactersFetchedAll()),
+        ),
+        BlocProvider(
+          create: (context) => EpisodesBloc(
+            getAllEpisodes: di.sl<GetAllEpisodes>(),
+            getEpisodeById: di.sl<GetEpisodeById>(),
+          )..add(const EpisodesFetchedAll()),
+        ),
+        BlocProvider(
+          create: (context) => LocationsBloc(
+              getAllLocations: di.sl<GetAllLocations>(),
+              getLocationById: di.sl<GetLocationById>())
+            ..add(const LocationsFetchedAll()),
         ),
         BlocProvider(
           create: (context) => HomeCubit(),
