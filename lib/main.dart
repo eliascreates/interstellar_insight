@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:interstellar_insight/features/theme/cubit/theme_cubit.dart';
 
 import 'features/characters/characters.dart';
 import 'features/episodes/episodes.dart';
@@ -42,6 +43,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => HomeCubit(),
         ),
+        BlocProvider(
+          create: (context) => ThemeCubit(),
+        ),
       ],
       child: const MyAppView(),
     );
@@ -53,6 +57,10 @@ class MyAppView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeMode = context.select(
+      (ThemeCubit cubit) => cubit.state.mode(),
+    );
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Interstellar Insight App',
@@ -73,7 +81,7 @@ class MyAppView extends StatelessWidget {
         appBarTheme: const AppBarTheme(backgroundColor: Color(0xff303030)),
         useMaterial3: true,
       ),
-      themeMode: ThemeMode.dark,
+      themeMode: themeMode,
       home: const SplashPage(),
     );
   }
