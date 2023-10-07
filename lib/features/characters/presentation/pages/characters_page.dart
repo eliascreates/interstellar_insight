@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:interstellar_insight/features/settings/settings.dart';
 
 import '../cubit/featured_character_list_cubit_cubit.dart';
 import '../widgets/widgets.dart';
@@ -59,7 +60,10 @@ class _CharacterViewState extends State<CharacterView>
             ),
             actions: [
               IconButton(
-                onPressed: () {},
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SettingsPage()),
+                ),
                 color: captionColor,
                 icon: const Icon(Icons.settings, size: 30),
               ),

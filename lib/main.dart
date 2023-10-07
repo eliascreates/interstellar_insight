@@ -68,8 +68,12 @@ class MyAppView extends StatelessWidget {
           brightness: Brightness.dark,
           seedColor: Colors.deepPurple,
         ),
+        canvasColor: const Color(0xff303030),
+        scaffoldBackgroundColor: const Color(0xff303030),
+        appBarTheme: const AppBarTheme(backgroundColor: Color(0xff303030)),
+        useMaterial3: true,
       ),
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.dark,
       home: const SplashPage(),
     );
   }

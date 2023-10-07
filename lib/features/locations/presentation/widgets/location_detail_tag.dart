@@ -28,6 +28,7 @@ class LocationDetailTag extends StatelessWidget {
         inhabitant,
         style: theme.textTheme.bodyLarge?.copyWith(
           fontWeight: FontWeight.bold,
+          color: Colors.black,
         ),
       ),
     );
