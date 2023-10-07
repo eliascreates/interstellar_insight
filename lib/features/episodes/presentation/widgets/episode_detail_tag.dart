@@ -34,10 +34,12 @@ class EpisodeDetailTag extends StatelessWidget {
         children: [
           Text(
             "$tagName: ",
-            style: theme.textTheme.bodyLarge
-                ?.copyWith(fontWeight: FontWeight.bold),
+            style: theme.textTheme.bodyLarge?.copyWith(
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
           ),
-          Text(tagValue),
+          Text(tagValue, style: const TextStyle(color: Colors.black)),
         ],
       ),
     );
