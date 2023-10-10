@@ -61,23 +61,26 @@ The project follows a Clean Architecture structure to separate concerns and make
 
 - `lib/` contains the application code.
   - `feature/` contains the features in the application.
-    - `interstellar/` contains the Interstellar feature with CRUD operations
+    - `characters/` contains the Interstellar characters feature with all characters.
         - `data/` contains the data layer with repository and data sources implementations.
         - `domain/` contains the domain layer with entities, use cases, and repositories interfaces.
         - `presentation/` contains the presentation layer with the UI, BLoCs, and other UI-related components.
+    - `episodes/` contains the Interstellar episodes feature with all episodes.
+        - ...
+    - `locations/` contains the Interstellar locations feature with all locations and notable resident characters.
+        - ...
 
 ## State Management
 
 The app uses the BLoC (Business Logic Component) pattern for state management. BLoC allows for separation of UI and business logic and provides a clean way to manage the state of the application.
 
-## Data Storage
+## Data Source
 
-The app uses Hive as the local data storage solution for storing Interstellar items. Hive is a lightweight and fast NoSQL database that works well with Flutter apps.
+The app uses an API `Final Space` as the remote data source for Json GET requests. Final Space API is an api about an animated tv series.
 
 ## Themes
 
 Interstellar Insight offers both light and dark themes to provide a personalized user experience. You can switch between themes from the app settings.
-
 
 ## Getting Started
 
