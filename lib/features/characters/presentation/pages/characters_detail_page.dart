@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:interstellar_insight/core/extension/character_status.dart';
 
 import '../../domain/domain.dart';
 import '../widgets/widgets.dart';
 
 class CharactersDetailPage extends StatelessWidget {
-  const CharactersDetailPage(
-      {super.key, required this.character, this.widgetName = ''});
+  const CharactersDetailPage({
+    super.key,
+    required this.character,
+    this.widgetName = '',
+  });
 
   final Character character;
   final String widgetName;
@@ -48,6 +52,57 @@ class CharactersPageView extends StatelessWidget {
               CharacterDetailPhoto(
                 character: character,
                 widgetName: widgetName,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Row(
+                  children: [
+                    RichText(
+                      text: TextSpan(
+                        style: DefaultTextStyle.of(context).style.copyWith(
+                              fontSize: 14.0, // Adjust the font size as needed
+                            ),
+                        children: <TextSpan>[
+                          TextSpan(
+                            text:
+                                'Status: ${character.status}, Hair Color: ${character.origin}',
+                            style: TextStyle(
+                              backgroundColor: Colors
+                                  .white, // Background color of the entire text
+                            ),
+                          ),
+                          TextSpan(
+                            text: character.status,
+                            style: TextStyle(
+                              color: character.cleanStatus
+                                  .color, // Color for character.status
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text('Abilitites'),
+                    Text(character.abilities.length.toString())
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text('Code names'),
+                    Text(character.alias.length.toString())
+                  ],
+                ),
               ),
             ],
           ),

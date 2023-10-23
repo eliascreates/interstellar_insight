@@ -1,4 +1,3 @@
-// lib/core/usecases/usecases.dart
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:interstellar_insight/core/errors/failure.dart';

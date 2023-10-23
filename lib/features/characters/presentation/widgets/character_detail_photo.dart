@@ -28,8 +28,8 @@ class CharacterDetailPhoto extends StatelessWidget {
         errorWidget: (context, url, error) => const Icon(Icons.error),
         fit: BoxFit.cover,
         imageBuilder: (context, imageProvider) => Container(
-          height: 350,
-          margin: const EdgeInsets.symmetric(horizontal: 10),
+          height: 330,
+          margin: const EdgeInsets.symmetric(horizontal: 20),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
             boxShadow: [
