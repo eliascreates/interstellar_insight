@@ -5,12 +5,14 @@ class DetailTag extends StatelessWidget {
     super.key,
     required this.tagName,
     this.tagValue,
-    this.color,
+    this.backgroundColor,
+    this.foregroundColor = Colors.black,
   });
 
   final String tagName;
   final String? tagValue;
-  final Color? color;
+  final Color? backgroundColor;
+  final Color? foregroundColor;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class DetailTag extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       decoration: BoxDecoration(
-        color: color ?? Colors.amberAccent.shade200,
+        color: backgroundColor ?? Colors.amberAccent.shade200,
         borderRadius: BorderRadius.circular(10.0),
         boxShadow: [
           BoxShadow(
@@ -33,15 +35,20 @@ class DetailTag extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
-            tagValue != null ? "$tagName: " : tagName,
-            style: theme.textTheme.bodyLarge?.copyWith(
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
+          Container(
+            constraints: const BoxConstraints(maxWidth: 300),
+            child: Text(
+              tagValue != null ? "$tagName: " : tagName,
+              maxLines: 1,
+              overflow: TextOverflow.clip,
+              style: theme.textTheme.bodyLarge?.copyWith(
+                fontWeight: FontWeight.bold,
+                color: foregroundColor,
+              ),
             ),
           ),
           if (tagValue case final tagValue?)
-            Text(tagValue, style: const TextStyle(color: Colors.black)),
+            Text(tagValue, style: TextStyle(color: foregroundColor)),
         ],
       ),
     );

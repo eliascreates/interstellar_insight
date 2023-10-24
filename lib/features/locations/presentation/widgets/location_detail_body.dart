@@ -37,7 +37,11 @@ class LocationDetailBody extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           location.notableResidents.isEmpty
-              ? const Text("No one lives here")
+              ? Text(
+                  "No one lives here",
+                  style: theme.textTheme.titleLarge
+                      ?.copyWith(color: theme.unselectedWidgetColor),
+                )
               : RichText(
                   text: TextSpan(
                     style: theme.textTheme.bodyMedium,

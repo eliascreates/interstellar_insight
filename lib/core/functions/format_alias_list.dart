@@ -15,4 +15,4 @@ String _cleanAlias(String alias) {
 }
 
 final RegExp _parenthesesPattern = RegExp(r'\([^)]*\)');
-final RegExp _byPattern = RegExp(r'\s*by\s*\w+');
+final RegExp _byPattern = RegExp(r'\s*by\s*\w*');

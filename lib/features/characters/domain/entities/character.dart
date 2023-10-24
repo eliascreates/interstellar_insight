@@ -6,7 +6,7 @@ class Character extends Equatable {
   final int id;
   final String name;
   final String status;
-  final String species;
+  final String _species;
   final String gender;
   final String hair;
   final List<String> _alias;
@@ -18,14 +18,15 @@ class Character extends Equatable {
     required this.id,
     required this.name,
     required this.status,
-    required this.species,
+    required String species,
     required this.gender,
     required this.hair,
     required List<String> alias,
     required this.origin,
     required this.abilities,
     required this.imageUrl,
-  }) : _alias = alias;
+  })  : _alias = alias,
+        _species = species;
 
   String get firstName {
     final wordsToCheck = {'little', 'the', 'general', 'king', 'queen'};
@@ -35,6 +36,12 @@ class Character extends Equatable {
       return name.trim();
     }
     return nameParts.first;
+  }
+
+  String get species {
+    final RegExp parenthesesPattern = RegExp(r'\([^)]*\)');
+
+    return _species.replaceAllMapped(parenthesesPattern, (match) => '');
   }
 
   List<String> get alias => formatAliasList(_alias);
