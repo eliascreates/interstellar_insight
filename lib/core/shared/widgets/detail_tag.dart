@@ -1,14 +1,16 @@
-part of 'episode_detail_body.dart';
+import 'package:flutter/material.dart';
 
-class EpisodeDetailTag extends StatelessWidget {
-  const EpisodeDetailTag({
+class DetailTag extends StatelessWidget {
+  const DetailTag({
     super.key,
     required this.tagName,
-    required this.tagValue,
+    this.tagValue,
+    this.color,
   });
 
   final String tagName;
-  final String tagValue;
+  final String? tagValue;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +18,8 @@ class EpisodeDetailTag extends StatelessWidget {
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-      margin: const EdgeInsets.only(bottom: 10.0),
       decoration: BoxDecoration(
-        color: Colors.amberAccent.shade200,
+        color: color ?? Colors.amberAccent.shade200,
         borderRadius: BorderRadius.circular(10.0),
         boxShadow: [
           BoxShadow(
@@ -33,13 +34,14 @@ class EpisodeDetailTag extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            "$tagName: ",
+            tagValue != null ? "$tagName: " : tagName,
             style: theme.textTheme.bodyLarge?.copyWith(
               fontWeight: FontWeight.bold,
               color: Colors.black,
             ),
           ),
-          Text(tagValue, style: const TextStyle(color: Colors.black)),
+          if (tagValue case final tagValue?)
+            Text(tagValue, style: const TextStyle(color: Colors.black)),
         ],
       ),
     );

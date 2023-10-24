@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:interstellar_insight/core/extension/character_status.dart';
+import 'package:interstellar_insight/core/shared/shared.dart';
 
 import '../../domain/domain.dart';
 import '../widgets/widgets.dart';
@@ -55,32 +56,20 @@ class CharactersPageView extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: Row(
+                child: Wrap(
+                  runSpacing: 10.0,
+                  direction: Axis.horizontal,
+                  alignment: WrapAlignment.spaceEvenly,
                   children: [
-                    RichText(
-                      text: TextSpan(
-                        style: DefaultTextStyle.of(context).style.copyWith(
-                              fontSize: 14.0, // Adjust the font size as needed
-                            ),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text:
-                                'Status: ${character.status}, Hair Color: ${character.origin}',
-                            style: TextStyle(
-                              backgroundColor: Colors
-                                  .white, // Background color of the entire text
-                            ),
-                          ),
-                          TextSpan(
-                            text: character.status,
-                            style: TextStyle(
-                              color: character.cleanStatus
-                                  .color, // Color for character.status
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
+                    DetailTag(
+                      tagName: 'Status',
+                      tagValue: character.status,
+                      color: character.cleanStatus.color,
+                    ),
+                    DetailTag(
+                      tagName: 'Hair Color',
+                      tagValue: character.hair,
+                    ),
                   ],
                 ),
               ),

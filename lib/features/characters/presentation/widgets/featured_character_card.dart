@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 
 import 'package:interstellar_insight/config/routes/custom_page_route.dart';
 import 'package:interstellar_insight/core/extension/character_status.dart';
-import 'package:interstellar_insight/core/shared/widgets/shared_widgets.dart';
 
 import '../../domain/domain.dart';
 import '../pages/characters_detail_page.dart';
+import 'character_image_placeholder.dart';
 
 class FeaturedCharacterCard extends StatelessWidget {
   final Character character;

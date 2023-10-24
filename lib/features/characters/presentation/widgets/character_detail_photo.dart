@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:interstellar_insight/core/shared/widgets/shared_widgets.dart';
 
 import '../../domain/domain.dart';
+import 'character_image_placeholder.dart';
 
 class CharacterDetailPhoto extends StatelessWidget {
   const CharacterDetailPhoto({

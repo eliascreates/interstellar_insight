@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../domain/domain.dart';
+import 'package:interstellar_insight/core/shared/shared.dart';
 
-part 'location_detail_tag.dart';
+import '../../domain/domain.dart';
 
 class LocationDetailBody extends StatelessWidget {
   const LocationDetailBody({super.key, required this.location});
@@ -27,15 +27,15 @@ class LocationDetailBody extends StatelessWidget {
           const SizedBox(height: 10),
           Wrap(
             spacing: 8.0,
+            runSpacing: 10.0,
             direction: Axis.horizontal,
             crossAxisAlignment: WrapCrossAlignment.end,
             children: List.generate(
               location.inhabitants.length,
-              (index) =>
-                  LocationDetailTag(inhabitant: location.inhabitants[index]),
+              (index) => DetailTag(tagName: location.inhabitants[index]),
             ),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 20),
           location.notableResidents.isEmpty
               ? const Text("No one lives here")
               : RichText(

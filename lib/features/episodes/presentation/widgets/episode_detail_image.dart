@@ -13,6 +13,7 @@ class EpisodeDetailImage extends StatelessWidget {
       tag: imageUrl,
       child: CachedNetworkImage(
         imageUrl: imageUrl,
+        
         placeholder: (context, url) => Container(
           height: 200,
           margin: const EdgeInsets.symmetric(horizontal: 10),

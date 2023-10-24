@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../domain/domain.dart';
+import 'package:interstellar_insight/core/shared/shared.dart';
 
-part 'episode_detail_tag.dart';
+import '../../domain/domain.dart';
 
 class EpisodeDetailBody extends StatelessWidget {
   const EpisodeDetailBody({super.key, required this.episode});
@@ -20,18 +20,16 @@ class EpisodeDetailBody extends StatelessWidget {
         children: [
           Wrap(
             spacing: 8.0,
+            runSpacing: 10.0,
             direction: Axis.horizontal,
             crossAxisAlignment: WrapCrossAlignment.end,
             children: [
-              EpisodeDetailTag(tagName: "Director", tagValue: episode.director),
-              EpisodeDetailTag(tagName: "Writer", tagValue: episode.writer),
-              EpisodeDetailTag(
-                tagName: "Release Date",
-                tagValue: episode.releaseDate,
-              ),
+              DetailTag(tagName: "Director", tagValue: episode.director),
+              DetailTag(tagName: "Writer", tagValue: episode.writer),
+              DetailTag(tagName: "Release Date", tagValue: episode.releaseDate),
             ],
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 20),
           RichText(
             text: TextSpan(
               style: theme.textTheme.bodyMedium,
