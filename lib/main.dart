@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:interstellar_insight/features/theme/cubit/theme_cubit.dart';
 
 import 'features/characters/characters.dart';
 import 'features/episodes/episodes.dart';
 import 'features/home/home.dart';
 import 'features/locations/locations.dart';
 import 'features/splash/splash.dart';
+import 'features/theme/theme.dart';
 import 'service_locator.dart' as di;
 
 Future<void> main() async {
   await di.init();
-
   runApp(const MyApp());
 }
 
@@ -40,12 +39,8 @@ class MyApp extends StatelessWidget {
               getLocationById: di.sl<GetLocationById>())
             ..add(const LocationsFetchedAll()),
         ),
-        BlocProvider(
-          create: (context) => HomeCubit(),
-        ),
-        BlocProvider(
-          create: (context) => ThemeCubit(),
-        ),
+        BlocProvider(create: (context) => HomeCubit()),
+        BlocProvider(create: (context) => ThemeCubit()),
       ],
       child: const MyAppView(),
     );
