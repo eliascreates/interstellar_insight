@@ -32,13 +32,13 @@ class CharacterModel extends Equatable {
       id: map['id'] as int? ?? 0,
       name: map['name'] as String? ?? 'Unknown',
       status: map['status'] as String? ?? 'Unknown',
-      species: map['species'] as String? ?? '',
-      gender: map['gender'] as String? ?? '',
-      hair: map['hair'] as String? ?? '',
+      species: map['species'] as String? ?? 'Unknown',
+      gender: map['gender'] as String? ?? 'Unknown',
+      hair: map['hair'] as String? ?? 'Unknown',
       alias:
           (map['alias'] as List<dynamic>?)?.map((e) => e.toString()).toList() ??
               [],
-      origin: map['origin'] as String? ?? '',
+      origin: map['origin'] as String? ?? 'Unknown',
       abilities: (map['abilities'] as List<dynamic>?)
               ?.map((e) => e.toString())
               .toList() ??

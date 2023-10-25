@@ -167,22 +167,41 @@ class FeaturedCharacterCard extends StatelessWidget {
                             Text(
                               character.description,
                               style: const TextStyle(
-                                  color: Colors.white, fontSize: 10),
+                                color: Colors.white,
+                                fontSize: 10,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                             const SizedBox(height: 10),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            Wrap(
+                              alignment: WrapAlignment.spaceAround,
+                              runSpacing: 5.0,
+                              spacing: 10.0,
+                              crossAxisAlignment: WrapCrossAlignment.center,
+                              direction: Axis.horizontal,
                               children: [
-                                Icon(Icons.circle,
-                                    color: character.cleanStatus.color,
-                                    size: 10),
-                                Text(character.species,
-                                    style: const TextStyle(
-                                        color: Colors.white, fontSize: 10)),
-                                Text("Origin: ${character.origin}",
-                                    style: const TextStyle(
-                                        color: Colors.white, fontSize: 10)),
-                                const SizedBox(height: 5),
+                                Icon(
+                                  Icons.circle,
+                                  color: character.cleanStatus.color,
+                                  size: 10,
+                                ),
+                                Text(
+                                  character.species,
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                const SizedBox(width: 10.0),
+                                Text(
+                                  "Origin: ${character.origin}",
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
                               ],
                             ),
                           ],
