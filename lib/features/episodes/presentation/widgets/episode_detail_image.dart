@@ -13,20 +13,21 @@ class EpisodeDetailImage extends StatelessWidget {
       tag: imageUrl,
       child: CachedNetworkImage(
         imageUrl: imageUrl,
-        
         placeholder: (context, url) => Container(
           height: 200,
           margin: const EdgeInsets.symmetric(horizontal: 10),
-          decoration: BoxDecoration(
+          foregroundDecoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15.0),
-            boxShadow: [
-              BoxShadow(
-                color: shadowColor.withOpacity(0.3),
-                spreadRadius: 1,
-                blurRadius: 5,
-                offset: const Offset(1, 5),
-              ),
-            ],
+            gradient: LinearGradient(
+              colors: [Colors.black.withOpacity(0.3), Colors.transparent],
+              begin: Alignment.bottomCenter,
+              end: Alignment.center,
+            ),
+          ),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border.all(color: Colors.grey),
+            borderRadius: BorderRadius.circular(15.0),
           ),
         ),
         imageBuilder: (context, imageProvider) {
