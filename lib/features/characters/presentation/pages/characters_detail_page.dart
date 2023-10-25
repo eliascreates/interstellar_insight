@@ -55,108 +55,120 @@ class CharactersPageView extends StatelessWidget {
                 widgetName: widgetName,
               ),
               Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Wrap(
-                  runSpacing: 10.0,
-                  direction: Axis.horizontal,
-                  alignment: WrapAlignment.spaceEvenly,
+                padding: const EdgeInsets.only(top: 20.0, bottom: 30.0),
+                child: Column(
                   children: [
-                    DetailTag(
-                      tagName: 'Status',
-                      tagValue: character.cleanStatus.name[0].toUpperCase() +
-                          character.cleanStatus.name.substring(1),
-                      backgroundColor: character.cleanStatus.color,
-                      foregroundColor:
-                          character.cleanStatus == CharacterStatus.destroyed
-                              ? Colors.white
-                              : null,
+                    Wrap(
+                      runSpacing: 10.0,
+                      spacing: 10.0,
+                      direction: Axis.horizontal,
+                      alignment: WrapAlignment.center,
+                      children: [
+                        DetailTag(
+                          tagName: 'Status',
+                          tagValue:
+                              character.cleanStatus.name[0].toUpperCase() +
+                                  character.cleanStatus.name.substring(1),
+                          backgroundColor: character.cleanStatus.color,
+                          foregroundColor:
+                              character.cleanStatus == CharacterStatus.destroyed
+                                  ? Colors.white
+                                  : null,
+                        ),
+                        DetailTag(
+                          tagName: 'Hair Color',
+                          tagValue: character.hair.contains('None')
+                              ? 'None'
+                              : character.hair,
+                        ),
+                        DetailTag(
+                          tagName: 'Species',
+                          tagValue: character.species,
+                        ),
+                        DetailTag(
+                          tagName: 'Origin',
+                          tagValue: character.origin,
+                          backgroundColor: character.cleanStatus.color,
+                          foregroundColor:
+                              character.cleanStatus == CharacterStatus.destroyed
+                                  ? Colors.white
+                                  : null,
+                        ),
+                      ],
                     ),
-                    DetailTag(
-                      tagName: 'Hair Color',
-                      tagValue: character.hair.contains('None')
-                          ? 'None'
-                          : character.hair,
+                    const SizedBox(height: 20),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Abilitites',
+                            style: theme.textTheme.titleLarge?.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            '${character.abilities.length}',
+                            style: theme.textTheme.titleLarge?.copyWith(
+                              fontWeight: FontWeight.w800,
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                    DetailTag(
-                      tagName: 'Species',
-                      tagValue: character.species,
+                    const SizedBox(height: 20),
+                    Wrap(
+                      runSpacing: 10.0,
+                      spacing: 10.0,
+                      direction: Axis.horizontal,
+                      alignment: WrapAlignment.center,
+                      children:
+                          List.generate(character.abilities.length, (index) {
+                        return DetailTag(
+                          tagName: character.abilities.elementAt(index),
+                        );
+                      }),
                     ),
-                    DetailTag(
-                      tagName: 'Origin',
-                      tagValue: character.origin,
-                      backgroundColor: character.cleanStatus.color,
-                      foregroundColor:
-                          character.cleanStatus == CharacterStatus.destroyed
-                              ? Colors.white
-                              : null,
+                    const SizedBox(height: 20),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Code Names',
+                            style: theme.textTheme.titleLarge?.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Text(
+                            '${character.alias.length}',
+                            style: theme.textTheme.titleLarge?.copyWith(
+                              fontWeight: FontWeight.w800,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    Wrap(
+                      runSpacing: 10.0,
+                      spacing: 10.0,
+                      direction: Axis.horizontal,
+                      alignment: WrapAlignment.center,
+                      children: List.generate(character.alias.length, (index) {
+                        return DetailTag(
+                          tagName: character.alias.elementAt(index),
+                        );
+                      }),
                     ),
                   ],
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Abilitites',
-                      style: theme.textTheme.titleLarge?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      '${character.abilities.length}',
-                      style: theme.textTheme.titleLarge?.copyWith(
-                        fontWeight: FontWeight.w800,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Wrap(
-                runSpacing: 10.0,
-                direction: Axis.horizontal,
-                alignment: WrapAlignment.spaceEvenly,
-                children: List.generate(character.abilities.length, (index) {
-                  return DetailTag(
-                    tagName: character.abilities.elementAt(index),
-                  );
-                }),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Code Names',
-                      style: theme.textTheme.titleLarge?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      '${character.alias.length}',
-                      style: theme.textTheme.titleLarge?.copyWith(
-                        fontWeight: FontWeight.w800,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Wrap(
-                runSpacing: 10.0,
-                direction: Axis.horizontal,
-                alignment: WrapAlignment.spaceEvenly,
-                children: List.generate(character.alias.length, (index) {
-                  return DetailTag(
-                    tagName: character.alias.elementAt(index),
-                  );
-                }),
               ),
             ],
           ),
         ),
-        const SliverPadding(padding: EdgeInsets.symmetric(vertical: 20)),
       ],
     );
   }

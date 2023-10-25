@@ -14,7 +14,7 @@ class LocationDetailBody extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+      padding: const EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -24,9 +24,9 @@ class LocationDetailBody extends StatelessWidget {
               style: theme.textTheme.headlineSmall
                   ?.copyWith(fontWeight: FontWeight.bold),
             ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 20),
           Wrap(
-            spacing: 8.0,
+            spacing: 10.0,
             runSpacing: 10.0,
             direction: Axis.horizontal,
             crossAxisAlignment: WrapCrossAlignment.end,
