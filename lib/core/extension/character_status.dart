@@ -19,6 +19,7 @@ extension CharacterStatusX on CharacterStatus {
       case 'operational':
         return CharacterStatus.operational;
       case 'deceased':
+      case 'dead':
         return CharacterStatus.deceased;
       case 'destroyed':
         return CharacterStatus.destroyed;
