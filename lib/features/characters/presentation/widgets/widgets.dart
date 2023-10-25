@@ -1,3 +1,4 @@
+export 'character_detail_body.dart';
 export 'character_detail_photo.dart';
 export 'featured_character_list.dart';
 export 'simple_character_grid_list.dart';
