@@ -7,7 +7,7 @@ class CharactersDetailPage extends StatelessWidget {
   const CharactersDetailPage({
     super.key,
     required this.character,
-    this.widgetName = '',
+    required this.widgetName,
   });
 
   final Character character;
@@ -24,7 +24,7 @@ class CharactersPageView extends StatelessWidget {
   const CharactersPageView({
     super.key,
     required this.character,
-    this.widgetName = '',
+    required this.widgetName,
   });
   final Character character;
   final String widgetName;
