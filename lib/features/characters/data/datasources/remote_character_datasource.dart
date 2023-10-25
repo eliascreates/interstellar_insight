@@ -56,3 +56,80 @@ class CharacterRemoteDataSourceImpl implements CharacterRemoteDataSource {
     }
   }
 }
+
+//This Data source exists to show the power of clean architecture
+class RickMortyCharacterRemoteDataSourceImpl
+    implements CharacterRemoteDataSource {
+  final http.Client client;
+
+  RickMortyCharacterRemoteDataSourceImpl({required this.client});
+
+  @override
+  Future<List<CharacterModel>> getAllCharacters() async {
+    try {
+      final response = await client
+          .get(Uri.parse('https://rickandmortyapi.com/api/character/'));
+
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> dataMap = jsonDecode(response.body);
+        final List<dynamic> data = dataMap['results'];
+
+        List<CharacterModel> characters = data.map((characterData) {
+          final characterMap = {
+            'id': characterData['id'],
+            'name': characterData['name'],
+            'status': characterData['status'],
+            'species': characterData['species'],
+            'gender': characterData['gender'],
+            'hair': 'Just look at their photo',
+            'alias': [],
+            'origin': characterData['origin']['name'],
+            'abilities': [],
+            'img_url': characterData['image'],
+          };
+
+          return CharacterModel.fromMap(characterMap);
+        }).toList();
+
+        return characters;
+      } else {
+        throw ServerException(
+          message:
+              'Failed to load characters. Status code: ${response.statusCode}',
+        );
+      }
+    } catch (e) {
+      throw ServerException(message: 'Failed to load characters. Error: $e');
+    }
+  }
+
+  @override
+  Future<CharacterModel> getCharacterById(int id) async {
+    final response = await client.get(
+        Uri.parse('https://rickandmortyapi.com/api/character/$id'),
+        headers: {'Content-Type': 'application/json; charset=utf-8'});
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> characterData = jsonDecode(response.body);
+
+      final characterMap = {
+        'id': characterData['id'],
+        'name': characterData['name'],
+        'status': characterData['status'],
+        'species': characterData['species'],
+        'gender': characterData['gender'],
+        'hair': 'Just look at their photo',
+        'alias': [],
+        'origin': characterData['origin']['name'],
+        'abilities': [],
+        'img_url': characterData['image'],
+      };
+
+      final character = CharacterModel.fromMap(characterMap);
+
+      return character;
+    } else {
+      throw ServerException();
+    }
+  }
+}

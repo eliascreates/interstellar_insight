@@ -31,6 +31,12 @@ Future<void> init() async {
     () => CharacterRemoteDataSourceImpl(client: sl()),
   );
 
+//* Uncomment the data source below for Rick and Morty display,
+//* but Comment out the data source up there of Final Space display,
+  // sl.registerLazySingleton<CharacterRemoteDataSource>(
+  //   () => RickMortyCharacterRemoteDataSourceImpl(client: sl()),
+  // );
+
   //! Episodes
 
   //Usecases

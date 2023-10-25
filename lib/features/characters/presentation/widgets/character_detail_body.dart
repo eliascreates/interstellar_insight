@@ -55,71 +55,75 @@ class CharacterDetailBody extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 20),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Abilitites',
-                  style: theme.textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
+          if (character.abilities.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Abilitites',
+                    style: theme.textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                Text(
-                  '${character.abilities.length}',
-                  style: theme.textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.w800,
-                  ),
-                )
-              ],
+                  Text(
+                    '${character.abilities.length}',
+                    style: theme.textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.w800,
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-          const SizedBox(height: 20),
-          Wrap(
-            runSpacing: 10.0,
-            spacing: 10.0,
-            direction: Axis.horizontal,
-            alignment: WrapAlignment.center,
-            children: List.generate(character.abilities.length, (index) {
-              return DetailTag(
-                tagName: character.abilities.elementAt(index),
-              );
-            }),
-          ),
-          const SizedBox(height: 20),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Code Names',
-                  style: theme.textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  '${character.alias.length}',
-                  style: theme.textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.w800,
-                  ),
-                )
-              ],
+          if (character.abilities.isNotEmpty) const SizedBox(height: 20),
+          if (character.abilities.isNotEmpty)
+            Wrap(
+              runSpacing: 10.0,
+              spacing: 10.0,
+              direction: Axis.horizontal,
+              alignment: WrapAlignment.center,
+              children: List.generate(character.abilities.length, (index) {
+                return DetailTag(
+                  tagName: character.abilities.elementAt(index),
+                );
+              }),
             ),
-          ),
           const SizedBox(height: 20),
-          Wrap(
-            runSpacing: 10.0,
-            spacing: 10.0,
-            direction: Axis.horizontal,
-            alignment: WrapAlignment.center,
-            children: List.generate(character.alias.length, (index) {
-              return DetailTag(
-                tagName: character.alias.elementAt(index),
-              );
-            }),
-          ),
+          if (character.alias.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Code Names',
+                    style: theme.textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    '${character.alias.length}',
+                    style: theme.textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.w800,
+                    ),
+                  )
+                ],
+              ),
+            ),
+          if (character.alias.isNotEmpty) const SizedBox(height: 20),
+          if (character.alias.isNotEmpty)
+            Wrap(
+              runSpacing: 10.0,
+              spacing: 10.0,
+              direction: Axis.horizontal,
+              alignment: WrapAlignment.center,
+              children: List.generate(character.alias.length, (index) {
+                return DetailTag(
+                  tagName: character.alias.elementAt(index),
+                );
+              }),
+            ),
         ],
       ),
     );
