@@ -6,6 +6,12 @@ Interstellar Insight is a simple and efficient Interstellar app built with Flutt
 
 ## Screenshots
 
+
+
+
+
+
+
 <img width="650" src="screenshots/interstellar_insight_theming.png"></a>
 <img width="650" src="screenshots/interstellar_insight_screens.png"></a>
 <img width="650" src="screenshots/interstellar_insight_project_structure.png"></a>

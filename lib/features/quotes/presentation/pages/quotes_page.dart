@@ -64,7 +64,7 @@ class _QuotesPageState extends State<QuotesPage> {
                         speed: const Duration(milliseconds: 50),
                       ),
                       TypewriterAnimatedText(
-                        'Feature not yet available',
+                        'Quotes are not here yet',
                         speed: const Duration(milliseconds: 100),
                       ),
                       TypewriterAnimatedText(
