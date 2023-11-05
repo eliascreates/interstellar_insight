@@ -5,6 +5,7 @@ Interstellar Insight is a mobile application dedicated to fans of the popular TV
 <img width="650" src="screenshots/interstellar_insight_gif.gif"></a>
 
 - [Interstellar Insight 👽](#interstellar-insight-)
+  - [Features](#features)
   - [Screenshots](#screenshots)
     - [Splash](#splash)
     - [Characters](#characters)
@@ -13,7 +14,6 @@ Interstellar Insight is a mobile application dedicated to fans of the popular TV
     - [Quotes](#quotes)
     - [Settings](#settings)
     - [Project Structure](#project-structure)
-  - [Features](#features)
   - [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
     - [Installing](#installing)
@@ -22,8 +22,16 @@ Interstellar Insight is a mobile application dedicated to fans of the popular TV
   - [Data Source](#data-source)
   - [Themes](#themes)
   - [Contributing](#contributing)
-  - [Getting Started](#getting-started-1)
+  - [Getting Started with Flutter](#getting-started-with-flutter)
 
+## Features
+
+- Browse and explore characters from Final Space.
+- View character details, including their status, species, abilities, and more.
+- Discover episodes of the series.
+- Explore memorable locations featured in the show.
+- Beautiful animations.
+- Dark and Light Theme
 
 ## Screenshots
 
@@ -95,16 +103,6 @@ Interstellar Insight is a mobile application dedicated to fans of the popular TV
 
 <img width="457" src="screenshots/project_structure.png"></a>
 
-## Features
-
-- Browse and explore characters from Final Space.
-- View character details, including their status, species, abilities, and more.
-- Discover episodes of the series.
-- Explore memorable locations featured in the show.
-- Access iconic quotes from Final Space.
-- Beautiful animations.
-- Dark and Light Theme
-
 ## Getting Started
 
 Follow these instructions to get the app up and running on your local machine.
@@ -175,7 +173,7 @@ To contribute to the project, follow these steps:
 
 ---
 
-## Getting Started
+## Getting Started with Flutter
 
 This project is a starting point for a Flutter application.
 
