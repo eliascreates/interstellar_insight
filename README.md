@@ -1,29 +1,109 @@
-# interstellar Insight 👽
+# Interstellar Insight 👽
 
-Interstellar Insight is a simple and efficient Interstellar app built with Flutter using Clean Architecture principles.
+Interstellar Insight is a mobile application dedicated to fans of the popular TV series "Final Space." This app offers an immersive experience for fans, providing them with valuable information about the show's characters, episodes, and locations. Dive into the Final Space universe and explore various aspects of the series with ease. It was built with Flutter using Clean Architecture principles.
 
 <img width="650" src="screenshots/interstellar_insight_gif.gif"></a>
 
+- [Interstellar Insight 👽](#interstellar-insight-)
+  - [Screenshots](#screenshots)
+    - [Splash](#splash)
+    - [Characters](#characters)
+    - [Episodes](#episodes)
+    - [Locations](#locations)
+    - [Quotes](#quotes)
+    - [Settings](#settings)
+    - [Project Structure](#project-structure)
+  - [Features](#features)
+  - [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Installing](#installing)
+  - [Folder Structure](#folder-structure)
+  - [State Management](#state-management)
+  - [Data Source](#data-source)
+  - [Themes](#themes)
+  - [Contributing](#contributing)
+  - [Getting Started](#getting-started-1)
+
+
 ## Screenshots
 
+### Splash
 
+<img height="500" src="screenshots/splash_screen.png"></a>
 
+### Characters
 
+<p float="left">
+<img height="500" src="screenshots/character/characters_detail_screen.png"></a>
+<img height="500" src="screenshots/character/characters_detail_screen_dark.png"></a>
+</p>
 
+<p float="left">
+<img height="500" src="screenshots/character/characters_feature_screen.png"></a>
+<img height="500" src="screenshots/character/characters_feature_screen_dark.png"></a>
+</p>
 
+<p float="left">
+<img height="500" src="screenshots/character/characters_list_screen.png"></a>
+<img height="500" src="screenshots/character/characters_list_screen_dark.png"></a>
+</p>
 
-<img width="650" src="screenshots/interstellar_insight_theming.png"></a>
-<img width="650" src="screenshots/interstellar_insight_screens.png"></a>
-<img width="650" src="screenshots/interstellar_insight_project_structure.png"></a>
-<img width="650" src="screenshots/interstellar_insight_tests.png"></a>
+<p float="left">
+<img height="500" src="screenshots/character/characters_simple_screen.png"></a>
+<img height="500" src="screenshots/character/characters_simple_screen_dark.png"></a>
+</p>
+
+### Episodes
+
+<p float="left">
+<img height="500" src="screenshots/episode/episodes_detail_screen.png"></a>
+<img height="500" src="screenshots/episode/episodes_detail_screen_dark.png"></a>
+</p>
+
+<p float="left">
+<img height="500" src="screenshots/episode/episodes_screen.png"></a>
+<img height="500" src="screenshots/episode/episodes_screen_dark.png"></a>
+</p>
+
+### Locations
+
+<p float="left">
+<img height="500" src="screenshots/location/locations_screen.png"></a>
+<img height="500" src="screenshots/location/locations_screen_dark.png"></a>
+</p>
+
+<p float="left">
+<img height="500" src="screenshots/location/locations_detail_screen.png"></a>
+<img height="500" src="screenshots/location/locations_detail_screen_dark.png"></a>
+</p>
+
+### Quotes
+
+<p float="left">
+<img height="500" src="screenshots/quote/quotes_screen.png"></a>
+<img height="500" src="screenshots/quote/quotes_screen_dark.png"></a>
+</p>
+
+### Settings
+
+<p float="left">
+<img height="500" src="screenshots/setting/settings_screen.png"></a>
+<img height="500" src="screenshots/setting/settings_screen_dark.png"></a>
+</p>
+
+### Project Structure
+
+<img width="457" src="screenshots/project_structure.png"></a>
 
 ## Features
 
-- Create new tasks with a title and description.
-- Mark tasks as completed or uncompleted.
-- View a list of all tasks.
-- Delete completed tasks.
-- Switch between light and dark themes.
+- Browse and explore characters from Final Space.
+- View character details, including their status, species, abilities, and more.
+- Discover episodes of the series.
+- Explore memorable locations featured in the show.
+- Access iconic quotes from Final Space.
+- Beautiful animations.
+- Dark and Light Theme
 
 ## Getting Started
 
@@ -38,13 +118,13 @@ Before running the app, make sure you have Flutter installed on your system. If 
 1. Clone this repository to your local machine using Git:
 
 ```
-git clone https://github.com/eliascreates/interstellar-insight.git
+git clone https://github.com/eliascreates/interstellar_insight.git
 ```
 
 2. Change to the project directory:
 
 ```
-cd interstellar-insight
+cd interstellar_insight
 ```
 
 3. Install the required dependencies:
@@ -59,34 +139,41 @@ flutter pub get
 flutter run
 ```
 
-The app should now be running on your emulator or connected device.
-
 ## Folder Structure
 
-The project follows a Clean Architecture structure to separate concerns and make the codebase maintainable and scalable.
+The Interstellar Insight app follows a Clean Architecture structure to separate concerns, making the codebase maintainable and scalable.
 
 - `lib/` contains the application code.
-  - `feature/` contains the features in the application.
-    - `characters/` contains the Interstellar characters feature with all characters.
-        - `data/` contains the data layer with repository and data sources implementations.
-        - `domain/` contains the domain layer with entities, use cases, and repositories interfaces.
-        - `presentation/` contains the presentation layer with the UI, BLoCs, and other UI-related components.
-    - `episodes/` contains the Interstellar episodes feature with all episodes.
-        - ...
-    - `locations/` contains the Interstellar locations feature with all locations and notable resident characters.
-        - ...
+  - `feature/` houses the different features within the app.
+    - `characters/` includes the Interstellar characters feature, containing all characters.
+      - `data/` contains the data layer with repository and data source implementations.
+      - `domain/` holds the domain layer with entities, use cases, and repository interfaces.
+      - `presentation/` encompasses the presentation layer, including the user interface (UI), Business Logic Components (BLoCs), and other UI-related components.
+    - `episodes/` showcases the Interstellar episodes feature.
+    - `locations/` introduces the Interstellar locations feature, complete with all locations and notable resident characters.
 
 ## State Management
 
-The app uses the BLoC (Business Logic Component) pattern for state management. BLoC allows for separation of UI and business logic and provides a clean way to manage the state of the application.
+The Interstellar Insight app employs the BLoC (Business Logic Component) pattern for state management. This pattern allows for a clear separation of UI and business logic, offering an organized approach to manage the app's state.
 
 ## Data Source
 
-The app uses an API `Final Space` as the remote data source for Json GET requests. Final Space API is an api about an animated tv series.
+The app fetches data from the "Final Space" API as the remote data source for JSON GET requests. The "Final Space" API provides data related to an animated TV series.
 
 ## Themes
 
-Interstellar Insight offers both light and dark themes to provide a personalized user experience. You can switch between themes from the app settings.
+Interstellar Insight offers both light and dark themes, allowing users to personalize their app experience. You can switch between themes through the app's settings.
+
+## Contributing
+
+To contribute to the project, follow these steps:
+
+1. Fork the project on GitHub.
+2. Create a feature branch for implementing your changes.
+3. Submit a pull request, providing a detailed description of your changes and their purpose.
+4. Engage in the code review process to further enhance the project.
+
+---
 
 ## Getting Started
 

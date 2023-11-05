@@ -3,12 +3,12 @@ import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-import 'package:interstellar_insight/features/locations/locations.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'package:interstellar_insight/config/debug/app_observer.dart';
 import 'package:interstellar_insight/features/characters/characters.dart';
 import 'package:interstellar_insight/features/episodes/episodes.dart';
+import 'package:interstellar_insight/features/locations/locations.dart';
 
 final sl = GetIt.instance;
 
