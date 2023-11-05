@@ -161,6 +161,8 @@ The app fetches data from the "Final Space" API as the remote data source for JS
 ## Themes
 
 Interstellar Insight offers both light and dark themes, allowing users to personalize their app experience. You can switch between themes through the app's settings.
+<img width="650" src="screenshots/interstellar_insight_theme.png"></a>
+
 
 ## Contributing
 
